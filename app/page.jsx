@@ -5,11 +5,9 @@ import Sidebar from "../components/ui/Sidebar";
 
 export default function Main() {
   return (
-    <div className="">
-      <Sidebar variant="sapphire" theme="light">
-        {" "}
-        <NaluTable />
-      </Sidebar>
-    </div>
+    <Sidebar variant="sapphire" theme="light" size="">
+      {" "}
+      <NaluTable />
+    </Sidebar>
   );
 }
