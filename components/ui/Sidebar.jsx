@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import colorTheme from "@/components/constants/colorTheme";
 import NaluLogo from "@/assets/NaluSapphire.svg";
+import { Input } from "@/components/ui/input";
 
 const Sidebar = ({ children, variant, theme }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -66,6 +67,7 @@ const Sidebar = ({ children, variant, theme }) => {
                 height="100%"
               />
             </div>
+
             <div
               className={`w-14 h-14 flex items-center justify-center relative`}
             >
@@ -115,6 +117,7 @@ const Sidebar = ({ children, variant, theme }) => {
         </div>
 
         <nav className="mt-4 space-y-2 px-2">
+          <Input placeholder="Buscar produtos..." className="max-w-sm" />
           {menuItems.map((item, index) => (
             <Link
               key={item.label}
