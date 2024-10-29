@@ -116,31 +116,37 @@ const Sidebar = ({ children, variant, theme }) => {
           </div>
         </div>
 
-        <nav className="mt-4 space-y-2 px-2">
-          <Input placeholder="Buscar produtos..." className="max-w-sm" />
+        <nav className="mt-4  px-4">
+          <Input placeholder="Search" className="max-w-sm mb-6" />
           {menuItems.map((item, index) => (
-            <Link
+            <div
               key={item.label}
-              href={item.href}
-              className={`flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-neutral-50 ${
+              style={{
+                borderColor: sideBorder[theme],
+              }}
+              className={`relative px-3 py-4 text-sm font-medium transition-all  text-neutral-600  hover:text-neutral-950 ${
+                index === menuItems.length - 1 ? "" : "border-b-2"
+              } ${
                 isOpen
                   ? "justify-start space-x-3"
                   : "justify-between items-center pr-4 bg-neutral-50"
-              } ${
-                selectedMenuItem === index
-                  ? "bg-neutral-50 border-l-4 border-l-blue-500"
-                  : ""
-              }`}
+              } ${selectedMenuItem === index ? "" : "opacity-50"}`}
               onClick={() => handleMenuItemClick(index)}
             >
-              <div className="flex items-center">
+              <Link href={item.href} className="flex items-center">
                 <item.icon className="h-5 w-5" />
                 {isOpen && <span className="ml-3">{item.label}</span>}
-              </div>
-              {!isOpen && selectedMenuItem === index && (
-                <div className="w-2 h-full bg-blue-500"></div>
-              )}
-            </Link>
+              </Link>
+
+              <div
+                style={{
+                  height: selectedMenuItem === index ? "60%" : "0%",
+                  width: selectedMenuItem === index ? "6px" : "0px",
+                  right: selectedMenuItem === index ? "103%" : "108%",
+                }}
+                className="absolute top-1/2 transition-all ease-in-out duration-500  bg-blue-500 rounded-tr-full transform rounded-br-full -translate-x-1/2 -translate-y-1/2"
+              ></div>
+            </div>
           ))}
         </nav>
       </div>

@@ -14,11 +14,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            "flex  w-full h-auto rounded-xl border border-input px-3 py-2 text-sm transition-colors",
+            "flex  w-full h-auto rounded-xl border border-input px-3 py-4 text-sm transition-colors",
             "bg-white pl-3 pr-10", // Adicionando background e padding para o ícone
             "file:border-0 file:bg-transparent file:text-sm file:font-medium",
             "file:text-foreground placeholder:text-muted-foreground",
-            "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+            "focus:outline-none focus:ring-0", // Nova classe adicionada
             "disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
