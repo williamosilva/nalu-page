@@ -82,7 +82,7 @@ const Sidebar = ({ children, variant, theme }) => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen w-screen overflow-hidden ">
       <div
         style={{
           background: `linear-gradient(280deg, ${backgroundGradient.firstColor[theme]}, ${backgroundGradient.finalColor[theme]})`,
@@ -115,16 +115,21 @@ const Sidebar = ({ children, variant, theme }) => {
               />
             </div>
 
-            <div className="w-14 h-14 flex items-center justify-center relative">
+            <div className="w-14 h-14 flex items-center justify-center relative ">
               <button
                 onClick={toggleSidebar}
+                style={{
+                  border: isOpen
+                    ? `1px solid ${sideBorder[theme]}`
+                    : "1px solid #ffffff",
+                }}
                 className={`
                   ${
                     isOpen
                       ? "absolute top-[50%] left-[130%] -translate-x-1/2 -translate-y-1/2"
                       : "absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
                   }
-                  flex h-8 w-8 items-center justify-center rounded-full bg-[#ffffff] hover:bg-[#ffefff] group text-gray-900 transition-all duration-500 ease-in-out
+                  flex h-8 w-8 items-center  justify-center rounded-full bg-[#ffffff] hover:bg-[#ffefff] group text-gray-900 transition-all duration-500 ease-in-out
                 `}
               >
                 <X
@@ -144,6 +149,7 @@ const Sidebar = ({ children, variant, theme }) => {
                         ? "h-0 w-0 opacity-0 rotate-0"
                         : "h-4 w-4 opacity-100 rotate-180"
                     }
+                 
                     transition-all duration-500 absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 group
                   `}
                 >
@@ -157,7 +163,11 @@ const Sidebar = ({ children, variant, theme }) => {
 
         {/* Navigation */}
         <div className="flex-1 flex flex-col min-h-0">
-          <div className="px-4 mb-6">
+          <div
+            className={`px-4 mb-6  
+              
+            `}
+          >
             <Input placeholder="Search" className="max-w-sm" />
           </div>
 
@@ -202,8 +212,8 @@ const Sidebar = ({ children, variant, theme }) => {
         </div>
 
         {/* Footer/Profile */}
-        <div className="flex-shrink-0 border-t p-4 overflow-hidden ">
-          <div className="flex items-center space-x-3 overflow-hidden">
+        <div className="w-[90%] bg-[#ece9e9] rounded-full mb-4 p-2 overflow-hidden mx-auto hover:bg-[#d6d2d2] cursor-pointer transition-all duration-300 ease-in-out">
+          <div className="flex items-center  overflow-hidden">
             <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
               <Image src={Profile} alt="Profile" width="100%" height="100%" />
             </div>
@@ -211,23 +221,27 @@ const Sidebar = ({ children, variant, theme }) => {
             <div
               className={` ${
                 isOpen ? " w-full" : "w-0"
-              }  transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap overflow-x-hidden`}
+              }  transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap overflow-x-hidden ml-3 select-none`}
             >
-              <p className="text-sm font-medium">William Oliveira Silva</p>
+              <p className="text-sm font-medium">William Silva</p>
               <p className="text-xs text-neutral-500">Send email</p>
             </div>
 
-            {isOpen && <Ellipsis className="h-5 w-5 flex-shrink-0" />}
+            {isOpen && (
+              <div className="h-5 w-5 flex-shrink-0 flex items-center justify-center mr-3 text-[#89838d]">
+                <Ellipsis />
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       <div
-        className={`flex-1 transition-all duration-500 ${
+        className={`flex-1 transition-all duration-500  overflow-hidden ${
           isOpen ? "ml-64" : "ml-16"
         }`}
       >
-        <main className="p-8">{children}</main>
+        <main className="p-8 ">{children}</main>
       </div>
     </div>
   );

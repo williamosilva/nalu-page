@@ -10,7 +10,7 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, placeholder = "Pesquisar...", ...props }, ref) => {
     return (
-      <div className="relative w-full ">
+      <div className="relative w-full  ">
         <input
           type={type}
           className={cn(
