@@ -90,7 +90,7 @@ const Sidebar = ({ children, variant, theme }) => {
           color: mainText[theme],
         }}
         className={`fixed left-0 top-0 z-40 h-screen transition-all duration-500 ease-in-out flex flex-col ${
-          isOpen ? "w-64" : "w-16"
+          isOpen ? "w-64" : "w-20"
         }`}
       >
         {/* Header */}
@@ -168,7 +168,11 @@ const Sidebar = ({ children, variant, theme }) => {
               
             `}
           >
-            <Input placeholder="Search" className="max-w-sm" />
+            <Input
+              placeholder="Search"
+              className="max-w-sm mt-4"
+              state={isOpen}
+            />
           </div>
 
           <nav className="flex-1 px-4 overflow-y-auto">
