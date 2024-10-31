@@ -27,11 +27,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           className={cn(
             `flex w-full h-auto rounded-xl border border-input 
-            ${state ? "px-3 py-4" : "px-0 py-4 user-select-none"}  
-            text-sm transition-colors cursor-pointer`,
+            ${state ? "px-3 py-4" : "px-0 py-3 user-select-none"}  
+            text-sm transition-all cursor-pointer`,
             `bg-white ${
               state ? "pl-3 pr-10 text-black" : "pl-0 pr-0 text-white"
-            } `, // Define a cor do texto
+            } `,
             "file:border-0 file:bg-transparent file:text-sm file:font-medium",
             "file:text-foreground placeholder:text-muted-foreground",
             "focus:outline-none focus:ring-0",

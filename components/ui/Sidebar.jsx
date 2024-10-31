@@ -170,7 +170,10 @@ const Sidebar = ({ children, variant, theme }) => {
           >
             <Input
               placeholder="Search"
-              className="max-w-sm mt-4"
+              className={`max-w-sm 
+                
+                  ${isOpen ? "mt-4 mb-0" : "mt-4 mb-2"}
+                `}
               state={isOpen}
             />
           </div>
@@ -204,9 +207,21 @@ const Sidebar = ({ children, variant, theme }) => {
 
                 <div
                   style={{
-                    height: selectedMenuItem === index ? "60%" : "0%",
-                    width: selectedMenuItem === index ? "6px" : "0px",
-                    right: selectedMenuItem === index ? "103%" : "108%",
+                    height: isOpen
+                      ? selectedMenuItem === index
+                        ? "60%"
+                        : "0%"
+                      : "60%",
+                    width: isOpen
+                      ? selectedMenuItem === index
+                        ? "6px"
+                        : "0px"
+                      : "6px",
+                    right: isOpen
+                      ? selectedMenuItem === index
+                        ? "103%"
+                        : "108%"
+                      : "114%",
                   }}
                   className="absolute top-1/2 transition-all ease-in-out duration-500 bg-blue-500 rounded-tr-full transform rounded-br-full -translate-x-1/2 -translate-y-1/2"
                 ></div>
