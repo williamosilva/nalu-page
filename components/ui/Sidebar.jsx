@@ -207,50 +207,50 @@ const Sidebar = ({ children, variant, theme }) => {
 
                 <div
                   style={{
-                    height: isOpen
-                      ? selectedMenuItem === index
-                        ? "60%"
-                        : "0%"
-                      : "60%",
-                    width: isOpen
-                      ? selectedMenuItem === index
-                        ? "6px"
-                        : "0px"
-                      : "6px",
+                    height: selectedMenuItem === index ? "60%" : "0%",
+                    width: selectedMenuItem === index ? "6px" : "0px",
                     right: isOpen
                       ? selectedMenuItem === index
                         ? "103%"
                         : "108%"
-                      : "114%",
+                      : selectedMenuItem === index
+                      ? "114%"
+                      : "140%",
                   }}
-                  className="absolute top-1/2 transition-all ease-in-out duration-500 bg-blue-500 rounded-tr-full transform rounded-br-full -translate-x-1/2 -translate-y-1/2"
-                ></div>
+                  className="absolute top-1/2 transition-all ease-in-out duration-300 bg-blue-500 rounded-tr-full rounded-br-full -translate-x-1/2 -translate-y-1/2"
+                />
               </div>
             ))}
           </nav>
         </div>
 
         {/* Footer/Profile */}
-        <div className="w-[90%] bg-[#ece9e9] rounded-full mb-4 p-2 overflow-hidden mx-auto hover:bg-[#d6d2d2] cursor-pointer transition-all duration-300 ease-in-out">
-          <div className="flex items-center  overflow-hidden">
+        <div
+          className={`
+              ${isOpen ? "w-[90%]" : "w-[70%]"}
+            bg-[#ece9e9] rounded-full mb-4 p-2 overflow-hidden overflow-x-hidden mx-auto hover:bg-[#d6d2d2] cursor-pointer transition-all duration-300 ease-in-out`}
+        >
+          <div className="flex items-center  ">
             <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
               <Image src={Profile} alt="Profile" width="100%" height="100%" />
             </div>
 
             <div
               className={` ${
-                isOpen ? " w-full" : "w-0"
-              }  transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap overflow-x-hidden ml-3 select-none`}
+                isOpen ? " w-full ml-3" : "w-0 ml-0"
+              }  transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap overflow-x-hidden  select-none`}
             >
               <p className="text-sm font-medium">William Silva</p>
               <p className="text-xs text-neutral-500">Send email</p>
             </div>
 
-            {isOpen && (
-              <div className="h-5 w-5 flex-shrink-0 flex items-center justify-center mr-3 text-[#89838d]">
-                <Ellipsis />
-              </div>
-            )}
+            <div
+              className={` ${
+                isOpen ? "h-5 w-5" : "h-0 w-0"
+              } flex-shrink-0 flex items-center justify-center mr-3 text-[#89838d]`}
+            >
+              <Ellipsis />
+            </div>
           </div>
         </div>
       </div>

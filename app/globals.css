@@ -92,3 +92,59 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Estilização da Scrollbar */
+@layer utilities {
+  /* Webkit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #d4d4d4;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #d4d4d4 #f1f1f1;
+  }
+
+  /* Dark mode */
+  .dark ::-webkit-scrollbar-track {
+    background-color: #1f1f1f;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: #404040;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background-color: #525252;
+  }
+
+  .dark * {
+    scrollbar-color: #404040 #1f1f1f;
+  }
+
+  /* Esconde a scrollbar mantendo a funcionalidade */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
