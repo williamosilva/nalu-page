@@ -6,7 +6,7 @@ const colorThemes = {
         dark: "#000000",
       },
       finalColor: {
-        light: "#f5f2fa",
+        light: "#fdfcff",
         dark: "#ffffff",
       },
     },

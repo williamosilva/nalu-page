@@ -28,23 +28,30 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={cn(
             `flex w-full h-auto rounded-xl border border-input 
             ${state ? "px-3 py-4" : "px-0 py-3 user-select-none"}  
-            text-sm transition-all cursor-pointer`,
+            text-sm cursor-pointer`,
             `bg-white ${
               state ? "pl-3 pr-10 text-black" : "pl-0 pr-0 text-white"
             } `,
             "file:border-0 file:bg-transparent file:text-sm file:font-medium",
             "file:text-foreground placeholder:text-muted-foreground",
-            "focus:outline-none focus:ring-0",
+            "focus:outline-0 focus:outline-none",
+            "focus-visible:outline-0 focus-visible:outline-none",
+            "focus:ring-0 focus-visible:ring-0",
+            "focus:shadow-none",
             "disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
+          style={{
+            WebkitTapHighlightColor: "transparent",
+            outline: "none",
+          }}
           ref={ref}
           placeholder={state ? placeholder : ""}
           onChange={onChange}
           {...props}
         />
         <Search
-          className={`transition-all ease-in-out duration-300 transform -translate-y-1/2 -translate-x-1/2 h-4 w-4 text-gray-400 absolute
+          className={`absolute transform -translate-y-1/2 -translate-x-1/2 h-4 w-4 text-gray-400
             ${state ? "left-[88%] top-1/2" : "left-1/2 top-1/2"}`}
         />
       </div>

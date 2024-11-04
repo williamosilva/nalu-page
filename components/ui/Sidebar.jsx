@@ -82,10 +82,10 @@ const Sidebar = ({ children, variant, theme }) => {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden ">
+    <div className="flex h-screen w-screen overflow-hidden z-50 relative ">
       <div
         style={{
-          background: `linear-gradient(280deg, ${backgroundGradient.firstColor[theme]}, ${backgroundGradient.finalColor[theme]})`,
+          background: `white`,
           borderRight: `1px solid ${sideBorder[theme]}`,
           color: mainText[theme],
         }}
@@ -94,7 +94,7 @@ const Sidebar = ({ children, variant, theme }) => {
         }`}
       >
         {/* Header */}
-        <div className="flex-shrink-0 h-20 px-4 py-4">
+        <div className="flex-shrink-0 h-32 px-4 py-8">
           <div
             className={`flex items-center justify-between w-full transition-all duration-500 ease-in-out ${
               isOpen ? "opacity-100" : "opacity-100"
@@ -115,7 +115,7 @@ const Sidebar = ({ children, variant, theme }) => {
               />
             </div>
 
-            <div className="w-14 h-14 flex items-center justify-center relative ">
+            <div className="w-14 h-14 flex items-center justify-center relative z-50 ">
               <button
                 onClick={toggleSidebar}
                 style={{
@@ -163,7 +163,7 @@ const Sidebar = ({ children, variant, theme }) => {
 
         {/* Navigation */}
         <div className="flex-1 flex flex-col min-h-0">
-          <div
+          {/* <div
             className={`px-4 mb-6  
               
             `}
@@ -176,7 +176,7 @@ const Sidebar = ({ children, variant, theme }) => {
                 `}
               state={isOpen}
             />
-          </div>
+          </div> */}
 
           <nav className="flex-1 px-4 overflow-y-auto">
             {menuItems.map((item, index) => (
@@ -189,8 +189,8 @@ const Sidebar = ({ children, variant, theme }) => {
                   index === menuItems.length - 1 ? "" : "border-b-[1px]"
                 } ${
                   isOpen
-                    ? "justify-start space-x-3"
-                    : "justify-between items-center pr-4 bg-neutral-50"
+                    ? "justify-start space-x-3 "
+                    : "justify-between items-center pr-4 "
                 } ${selectedMenuItem === index ? "" : "opacity-50"}`}
                 onClick={() => handleMenuItemClick(index)}
               >
@@ -257,10 +257,10 @@ const Sidebar = ({ children, variant, theme }) => {
 
       <div
         className={`flex-1 transition-all duration-500  overflow-hidden ${
-          isOpen ? "ml-64" : "ml-16"
+          isOpen ? "ml-64" : "ml-[80px]"
         }`}
       >
-        <main className="p-8 ">{children}</main>
+        <main className=" ">{children}</main>
       </div>
     </div>
   );
