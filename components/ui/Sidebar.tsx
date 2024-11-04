@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,15 +16,58 @@ import {
 import colorTheme from "@/components/constants/colorTheme";
 import NaluLogo from "@/assets/NaluSapphire.svg";
 import Profile from "@/assets/Profile.jpg";
-import { Input } from "@/components/ui/input";
 
-const Sidebar = ({ children, variant, theme }) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
-  const { backgroundGradient, mainText, sideBorder, imgBackground } =
-    colorTheme[variant];
+interface Badge {
+  type: "number" | "text";
+  content: string;
+}
 
-  const menuItems = [
+interface MenuItem {
+  icon: React.FC<{ className?: string }>;
+  label: string;
+  href: string;
+  badge?: Badge;
+}
+
+interface ColorTheme {
+  backgroundGradient: {
+    firstColor: {
+      light: string;
+      dark: string;
+    };
+    finalColor: {
+      light: string;
+      dark: string;
+    };
+  };
+  mainText: {
+    light: string;
+    dark: string;
+  };
+  sideBorder: {
+    light: string;
+    dark: string;
+  };
+  imgBackground: {
+    light: string;
+    dark: string;
+  };
+}
+
+interface SidebarProps {
+  children: ReactNode;
+  variant: keyof typeof colorTheme;
+  theme: "light" | "dark";
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [selectedMenuItem, setSelectedMenuItem] = useState<number | null>(null);
+  const { mainText, sideBorder, imgBackground } = colorTheme[
+    variant
+  ] as ColorTheme;
+
+  const menuItems: MenuItem[] = [
     { icon: LayoutGrid, label: "Overview", href: "/" },
     {
       icon: Users,
@@ -53,15 +96,15 @@ const Sidebar = ({ children, variant, theme }) => {
     { icon: HelpCircle, label: "Help", href: "/" },
   ];
 
-  const handleMenuItemClick = (index) => {
+  const handleMenuItemClick = (index: number): void => {
     setSelectedMenuItem(index);
   };
 
-  const toggleSidebar = () => {
+  const toggleSidebar = (): void => {
     setIsOpen((prevState) => !prevState);
   };
 
-  const renderBadge = (badge) => {
+  const renderBadge = (badge?: Badge): ReactNode => {
     if (!badge) return null;
 
     if (badge.type === "number") {
@@ -82,7 +125,7 @@ const Sidebar = ({ children, variant, theme }) => {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden z-50 relative ">
+    <div className="flex h-screen w-screen overflow-hidden z-50 relative">
       <div
         style={{
           background: `white`,
@@ -107,12 +150,7 @@ const Sidebar = ({ children, variant, theme }) => {
               className={`flex items-center justify-center border rounded-2xl transition-all duration-500 ease-in-out
                 ${isOpen ? "w-14 h-14 p-2" : "w-0 h-0 p-0"}`}
             >
-              <Image
-                src={NaluLogo}
-                alt="Nalu Logo"
-                width="100%"
-                height="100%"
-              />
+              <Image src={NaluLogo} alt="Nalu Logo" width={56} height={56} />
             </div>
 
             <div className="w-14 h-14 flex items-center justify-center relative z-50 ">
@@ -129,7 +167,7 @@ const Sidebar = ({ children, variant, theme }) => {
                       ? "absolute top-[50%] left-[130%] -translate-x-1/2 -translate-y-1/2"
                       : "absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
                   }
-                  flex h-8 w-8 items-center  justify-center rounded-full bg-[#ffffff] hover:bg-[#ffefff] group text-gray-900 transition-all duration-500 ease-in-out
+                  flex h-8 w-8 items-center justify-center rounded-full bg-[#ffffff] hover:bg-[#ffefff] group text-gray-900 transition-all duration-500 ease-in-out
                 `}
               >
                 <X
@@ -149,7 +187,6 @@ const Sidebar = ({ children, variant, theme }) => {
                         ? "h-0 w-0 opacity-0 rotate-0"
                         : "h-4 w-4 opacity-100 rotate-180"
                     }
-                 
                     transition-all duration-500 absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 group
                   `}
                 >
@@ -163,21 +200,6 @@ const Sidebar = ({ children, variant, theme }) => {
 
         {/* Navigation */}
         <div className="flex-1 flex flex-col min-h-0">
-          {/* <div
-            className={`px-4 mb-6  
-              
-            `}
-          >
-            <Input
-              placeholder="Search"
-              className={`max-w-sm 
-                
-                  ${isOpen ? "mt-4 mb-0" : "mt-4 mb-2"}
-                `}
-              state={isOpen}
-            />
-          </div> */}
-
           <nav className="flex-1 px-4 overflow-y-auto">
             {menuItems.map((item, index) => (
               <div
@@ -189,8 +211,8 @@ const Sidebar = ({ children, variant, theme }) => {
                   index === menuItems.length - 1 ? "" : "border-b-[1px]"
                 } ${
                   isOpen
-                    ? "justify-start space-x-3 "
-                    : "justify-between items-center pr-4 "
+                    ? "justify-start space-x-3"
+                    : "justify-between items-center pr-4"
                 } ${selectedMenuItem === index ? "" : "opacity-50"}`}
                 onClick={() => handleMenuItemClick(index)}
               >
@@ -230,15 +252,15 @@ const Sidebar = ({ children, variant, theme }) => {
               ${isOpen ? "w-[90%]" : "w-[70%]"}
             bg-[#ece9e9] rounded-full mb-4 p-2 overflow-hidden overflow-x-hidden mx-auto hover:bg-[#d6d2d2] cursor-pointer transition-all duration-300 ease-in-out`}
         >
-          <div className="flex items-center  ">
+          <div className="flex items-center">
             <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-              <Image src={Profile} alt="Profile" width="100%" height="100%" />
+              <Image src={Profile} alt="Profile" width={40} height={40} />
             </div>
 
             <div
               className={` ${
-                isOpen ? " w-full ml-3" : "w-0 ml-0"
-              }  transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap overflow-x-hidden  select-none`}
+                isOpen ? "w-full ml-3" : "w-0 ml-0"
+              } transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap overflow-x-hidden select-none`}
             >
               <p className="text-sm font-medium">William Silva</p>
               <p className="text-xs text-neutral-500">Send email</p>
@@ -256,11 +278,11 @@ const Sidebar = ({ children, variant, theme }) => {
       </div>
 
       <div
-        className={`flex-1 transition-all duration-500  overflow-hidden ${
+        className={`flex-1 transition-all duration-500 overflow-hidden ${
           isOpen ? "ml-64" : "ml-[80px]"
         }`}
       >
-        <main className=" ">{children}</main>
+        <main>{children}</main>
       </div>
     </div>
   );
