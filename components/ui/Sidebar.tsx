@@ -125,14 +125,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme }) => {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden z-50 relative">
+    <div className="flex h-screen w-full overflow-hidden z-50 relative">
       <div
         style={{
           background: `white`,
           borderRight: `1px solid ${sideBorder[theme]}`,
           color: mainText[theme],
         }}
-        className={`fixed left-0 top-0 z-40 h-screen transition-all duration-500 ease-in-out flex flex-col ${
+        className={`absolute left-0 top-0 z-40 h-screen transition-all duration-500 ease-in-out flex flex-col ${
           isOpen ? "w-64" : "w-20"
         }`}
       >
