@@ -49,39 +49,40 @@ export default function MainTopBar() {
           <nav className="space-x-12 text-sm flex items-center mr-16">
             <a
               href="#"
-              className="text-gray-600 hover:text-gray-900 transition-all ease-in-out "
+              className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
             >
-              Get started
+              Example
             </a>
             <a
               href="#"
-              className="text-gray-600 hover:text-gray-900  transition-all ease-in-out "
+              className="text-gray-600 hover:text-gray-900  transition-all ease-in-out  font-semibold "
             >
               Docs
             </a>
             <a
               href="#"
-              className="text-gray-600 hover:text-gray-900  transition-all ease-in-out "
+              className="text-gray-600 hover:text-gray-900  transition-all ease-in-out   font-semibold"
             >
               Contact
             </a>
           </nav>
 
           {/* GitHub container */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 relative">
             <a
               href="https://github.com/your-repo"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-white gap-6 px-4 py-[6px] rounded-md hover:text-neutral-100 bg-[#010409]"
+              className="flex group items-center text-white gap-6 px-4 py-[6px] rounded-lg hover:text-neutral-100 bg-[#010409]  transition-all duration-700 ease-in-out hover:shadow-[0_0px_20px_2px_rgba(0,0,0,0.2)] overflow-hidden relative"
             >
+              <span className="w-8 h-20 opacity-10 group-hover:left-[2%] ease-in-out transition-all duration-1000 from-[#dedede] to-white absolute left-[102%]  rotate-12 bg-gradient-to-t   group-hover:opacity-20 "></span>
               <div className="flex items-center justify-center gap-2">
                 <GitHubIcon className="text-lg" />
                 <span className="text-[14px] font-medium">Star on GitHub</span>
               </div>
 
               <div className="flex items-center justify-center ">
-                <StarRoundedIcon className="text-lg" />
+                <StarRoundedIcon className="text-lg text-[#6b7280] group-hover:text-[#fcc032] transition-all duration-500 ease-in-out" />
                 <span className="ml-1">123</span>
               </div>
             </a>
@@ -89,7 +90,9 @@ export default function MainTopBar() {
         </div>
 
         {/* Get Started button */}
-        <ShimmerButton>Get Started</ShimmerButton>
+        <ShimmerButton>
+          <p className="text-sm font-medium">Get Started</p>
+        </ShimmerButton>
       </div>
     </div>
   );
