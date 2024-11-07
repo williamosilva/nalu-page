@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import ShimmerButton from "../../components/ui/shimmer-button";
+import NumberTicker from "../../components/ui/number-ticker";
 import NaluDark from "../../assets/NaluDark.png";
 import Image from "next/image";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -73,7 +74,7 @@ export default function MainTopBar() {
               href="https://github.com/your-repo"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex group items-center text-white gap-6 px-4 py-[6px] rounded-lg hover:text-neutral-100 bg-[#010409]  transition-all duration-700 ease-in-out hover:shadow-[0_0px_20px_2px_rgba(0,0,0,0.2)] overflow-hidden relative"
+              className="flex group items-center text-white gap-3 px-4 py-[7px] rounded-xl hover:text-neutral-100 bg-[#010409]  transition-all duration-700 ease-in-out hover:shadow-[0_0px_20px_2px_rgba(0,0,0,0.2)] overflow-hidden relative"
             >
               <span className="w-8 h-20 opacity-10 group-hover:left-[2%] ease-in-out transition-all duration-1000 from-[#dedede] to-white absolute left-[102%]  rotate-12 bg-gradient-to-t   group-hover:opacity-20 "></span>
               <div className="flex items-center justify-center gap-2">
@@ -83,7 +84,11 @@ export default function MainTopBar() {
 
               <div className="flex items-center justify-center ">
                 <StarRoundedIcon className="text-lg text-[#6b7280] group-hover:text-[#fcc032] transition-all duration-500 ease-in-out" />
-                <span className="ml-1">123</span>
+
+                <NumberTicker
+                  value={123}
+                  className="text-white -tracking-wider font-medium "
+                />
               </div>
             </a>
           </div>
