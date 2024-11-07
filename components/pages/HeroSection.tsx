@@ -1,6 +1,7 @@
 import GridPattern from "../../components/ui/animated-grid-pattern";
 import MainTopBar from "../../components/ui/MainTopBar";
 import GradualSpacing from "../../components/ui/gradual-spacing";
+import { FadeText } from "../../components/ui/fade-text";
 
 export default function HeroSection() {
   return (
@@ -13,11 +14,10 @@ export default function HeroSection() {
 
       <GradualSpacing
         text="your items easily"
-        className="text-8xl font-extrabold h-28 text-wrap bg-gradient-to-b from-[#AC28ED] to-[#B24DF8]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+        className="text-8xl font-extrabold mb-8 h-28 text-wrap bg-gradient-to-b from-[#AC28ED] to-[#B24DF8]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
       />
-      <GradualSpacing
-        duration={0.1}
-        className="text-lg mt-3 text-[#6b7280]"
+      <FadeText
+        className="text-lg text-[#6b7280]"
         text="A modern, customizable React table with theming, pagination, and
         advanced features for an intuitive table."
       />
