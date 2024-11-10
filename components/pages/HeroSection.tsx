@@ -39,39 +39,46 @@ export default function HeroSection() {
   }, [buttonControls, showTransition]);
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
-      <MainTopBar />
+    <div className="relative">
+      <div className="h-screen flex flex-col justify-center items-center z-[10] relative">
+        <MainTopBar />
 
-      <GradualSpacing
-        text="Manage and manipulate"
-        className="text-8xl font-extrabold h-28 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
-      />
+        <GradualSpacing
+          text="Manage and manipulate"
+          className="text-8xl font-black h-28 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+        />
 
-      <GradualSpacing
-        text="your items easily"
-        className="text-8xl font-extrabold mb-8 h-28 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]   text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
-      />
-      <FadeText
-        className="text-lg text-[#6b7280]"
-        text="A modern, customizable React table with theming, pagination, and
+        <GradualSpacing
+          text="your items easily"
+          className="text-8xl font-extrabold mb-4 h-28 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]   text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+        />
+        <FadeText
+          className="text-lg text-[#6b7280] "
+          text="A modern, customizable React table with theming, pagination, and
         advanced features for an intuitive table."
-      />
-      <motion.div
-        className="mt-8 flex gap-20"
-        initial={{ opacity: 0, y: 50 }}
-        animate={buttonControls}
-      >
-        <RainbowButton className="w-full hover:opacity-90 transition-all">
-          Get Started for free
-        </RainbowButton>
-        <SecondButton />
-      </motion.div>
-
-      <div className="opacity-30 ">
-        <GridPattern maxOpacity={0.1} numSquares={10} />
+        />
+        <motion.div
+          className="pt-14 flex gap-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={buttonControls}
+        >
+          <RainbowButton className="w-full hover:opacity-90 transition-all">
+            Get Started for free
+          </RainbowButton>
+          <SecondButton />
+        </motion.div>
+        <motion.div
+          className="mt-0 flex gap-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={buttonControls}
+        >
+          <div className="pt-10 ">
+            <NpmStart />
+          </div>
+        </motion.div>
       </div>
-      <div className="pt-10 ">
-        <NpmStart />
+      <div className="opacity-30 z-[20] ">
+        <GridPattern maxOpacity={0.2} numSquares={7} height={80} width={80} />
       </div>
     </div>
   );
