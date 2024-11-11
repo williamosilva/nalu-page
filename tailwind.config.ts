@@ -77,6 +77,8 @@ const config: Config = {
           "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
         rainbow: "rainbow var(--speed, 2s) infinite linear",
+        grid: "grid 15s linear infinite",
+        meteor: "meteor 5s linear infinite",
       },
       keyframes: {
         "shimmer-slide": {
@@ -104,6 +106,27 @@ const config: Config = {
           },
           "100%": {
             "background-position": "200%",
+          },
+        },
+        grid: {
+          "0%": {
+            transform: "translateY(-50%)",
+          },
+          "100%": {
+            transform: "translateY(0)",
+          },
+        },
+        meteor: {
+          "0%": {
+            transform: "rotate(215deg) translateX(0)",
+            opacity: "1",
+          },
+          "70%": {
+            opacity: "1",
+          },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
           },
         },
       },

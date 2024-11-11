@@ -12,7 +12,7 @@ export default function Main({ variant = "sapphire", theme = "light" }) {
       <div className="min-h-screen">
         <HeroSection variant="sapphire" theme="light" />
       </div>
-      <div className="min-h-screen">
+      <div className="min-h-screen px-[380px] h-[100px]">
         <MiddleSection variant="sapphire" theme="light" />
       </div>
       <div className="min-h-screen">

@@ -1,3 +1,5 @@
+"use client"; // Add this if you want to ensure the component runs on the client side.
+
 import {
   BellIcon,
   CalendarIcon,
@@ -5,8 +7,12 @@ import {
   GlobeIcon,
   InputIcon,
 } from "@radix-ui/react-icons";
-
+import Image from "next/image";
+import actionsTable from "@/assets/actionsTable.png";
+import pagination from "@/assets/pagination.png";
+import RetroGrid from "../ui/retro-grid";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
+import GridPattern from "../ui/animated-grid-pattern";
 
 const features = [
   {
@@ -15,8 +21,20 @@ const features = [
     description: "We automatically save your files as you type.",
     href: "/",
     cta: "Learn more",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: (
+      <div className="absolute w-full right-[40%] top-[60%] transform translate-x-1/2 -translate-y-1/2 group">
+        <Image
+          src={actionsTable}
+          alt="Actions table"
+          className="relative object-cover w-[370px] h-[400px] opacity-60 border border-neutral-200 rounded-xl"
+        />
+        <div className="absolute inset-0 bg-gradient-to-tl from-white/100 via-white/90 to-transparent rounded-lg" />
+        <div className="absolute inset-0 backdrop-blur-sm  group-hover:backdrop-blur-0 transition-all duration-300 ease-in-out rounded-xl" />
+      </div>
+    ),
     className: "lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3",
+    hoverBackground: "slide",
+    hoverIconColorClass: "#d41204",
   },
   {
     Icon: InputIcon,
@@ -24,7 +42,18 @@ const features = [
     description: "Search through all your files in one place.",
     href: "/",
     cta: "Learn more",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: (
+      <div className="absolute w-full right-[40%] top-[50%] transform translate-x-1/2 -translate-y-1/2 group">
+        <Image
+          src={pagination}
+          alt="Actions table"
+          className="relative object-cover w-[290px] h-[90px] opacity-60 border border-neutral-200 rounded-xl"
+        />
+        <div className="absolute inset-0 bg-gradient-to-tl from-white/100 via-white/90 to-transparent rounded-lg" />
+        <div className="absolute inset-0 backdrop-blur-sm  group-hover:backdrop-blur-0 transition-all duration-300 ease-in-out rounded-xl" />
+      </div>
+    ),
+    hoverBackground: "scale",
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3",
   },
   {
@@ -42,7 +71,11 @@ const features = [
     description: "Use the calendar to filter your files by date.",
     href: "/",
     cta: "Learn more",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: (
+      <div className="absolute w-[374px] h-48 left-[50%] top-[0%] -translate-x-[50%] -translate-y-[50%] group">
+        <RetroGrid className="" angle={70} />
+      </div>
+    ),
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
   {
@@ -57,10 +90,11 @@ const features = [
   },
 ];
 
-export async function MiddleSection() {
+export function MiddleSection() {
   return (
     <BentoGrid className="lg:grid-rows-3">
       {features.map((feature) => (
+        //@ts-ignore
         <BentoCard key={feature.name} {...feature} />
       ))}
     </BentoGrid>

@@ -17,7 +17,7 @@ export default function Example({ variant = "sapphire", theme = "light" }) {
       >
         <Topbar />
         <div className="p-8">
-          <NaluTable />
+          <NaluTable itemsPerPage={10} totalItems={30} />
         </div>
       </div>
     </Sidebar>
