@@ -13,6 +13,7 @@ import pagination from "@/assets/pagination.png";
 import RetroGrid from "../ui/retro-grid";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import GridPattern from "../ui/animated-grid-pattern";
+import { Languages } from "lucide-react";
 
 const features = [
   {
@@ -85,7 +86,7 @@ const features = [
       "Get notified when someone shares a file or mentions you in a comment.",
     href: "/",
     cta: "Learn more",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: <Languages />,
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
   },
 ];
