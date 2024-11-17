@@ -66,7 +66,7 @@ const features = [
     cta: "Learn more",
     background: (
       <div className="absolute w-[374px] h-48 left-[20%] top-[0%] opacity-40 -translate-x-[50%] -translate-y-[50%] group">
-        <Meteors number={100} />
+        <Meteors number={20} />
       </div>
     ),
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4",

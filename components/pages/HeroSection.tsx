@@ -40,20 +40,20 @@ export default function HeroSection() {
 
   return (
     <div className="relative ">
-      <div className=" h-[1080px] flex flex-col w-full justify-center items-center z-[10] relative">
+      <div className=" h-[1080px] flex flex-col w-full justify-center items-center z-[10] relative md:px-0 px-6">
         <MainTopBar />
 
         <GradualSpacing
           text="Manage and manipulate"
-          className="text-8xl font-black h-28 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+          className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-24 font-black 2xl:h-28 text-4xl h-14  md:text-6xl md:h-20 sm:text-5xl sm:h-16  text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
         />
 
         <GradualSpacing
           text="your items easily"
-          className="text-8xl font-extrabold mb-4 h-28 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]   text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+          className="2xl:text-8xl xl:text-8xl lg:text-7xl  xl:h-28  lg:h-20 2xl:h-28   text-4xl h-14   md:text-6xl md:h-20 sm:text-5xl sm:h-16  font-extrabold mb-4 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]   text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
         />
         <FadeText
-          className="text-lg text-[#6b7280] "
+          className="lg:text-lg text-[#6b7280] !text-center sm:text-base"
           text="A modern, customizable React table with theming, pagination, and
         advanced features for an intuitive table."
         />

@@ -67,8 +67,8 @@ export default function InstallationSection() {
             tailwind.config.js
           </p>
         </span>
-        <div className="bg-[#F7F7F7] p-4 rounded-lg text-black text-sm flex flex-col gap-2">
-          <pre>
+        <div className="bg-[#F7F7F7] p-4 rounded-lg text-black text-sm flex flex-col gap-2  overflow-x-auto">
+          <pre className="">
             <code>{configExample}</code>
           </pre>
         </div>
@@ -102,16 +102,18 @@ export default function InstallationSection() {
         >
           3. Start using the component
         </p>
-        <div className="bg-[#F7F7F7] p-4 rounded-lg text-black text-sm flex flex-col gap-2">
-          <p>import NaluTable from "nalu-table";</p>
+        <div className="bg-[#F7F7F7] p-4 rounded-lg text-black text-sm overflow-x-auto ">
+          <div className="flex flex-col gap-2 whitespace-nowrap">
+            <p>import NaluTable from "nalu-table";</p>
 
-          <span className="flex gap-1">
-            import "nalu-table/dist/style.css";{" "}
-            <p className="opacity-50">
-              //Recommended for best visual experience
-            </p>{" "}
-          </span>
-          <p className="opacity-50">// Your component code</p>
+            <span className="flex gap-1">
+              import "nalu-table/dist/style.css";{" "}
+              <p className="opacity-50">
+                //Recommended for best visual experience
+              </p>{" "}
+            </span>
+            <p className="opacity-50">// Your component code</p>
+          </div>
         </div>
       </div>
       <div className="bg-[#F7F7F7] p-4 rounded-lg text-black text-sm flex flex-col gap-2">
