@@ -12,6 +12,7 @@ import Footer from "@/components/ui/Footer";
 import BasicExamples from "@/components/pages/BasicExamples";
 import EventHandlers from "@/components/pages/EventHandlers";
 import SparklesText from "@/components/ui/sparkles-text";
+import GetStartFooter from "@/components/pages/GetStartFooter";
 import { Poppins } from "@next/font/google";
 
 import { cn } from "@/lib/utils";
@@ -106,6 +107,7 @@ export default function Main({ variant = "sapphire", theme = "light" }) {
           <GridPattern maxOpacity={0.5} numSquares={7} height={80} width={80} />
         </div>
       </div>
+      <GetStartFooter />
       <Footer />
     </div>
     // <div className="w-screen h-screen flex flex-col ">
