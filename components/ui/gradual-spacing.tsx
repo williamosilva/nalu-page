@@ -5,8 +5,8 @@ import { Poppins } from "@next/font/google";
 import { cn } from "@/lib/utils";
 
 const poppinsFont = Poppins({
-  weight: ["400", "700"], // Escolha os pesos necessários
-  subsets: ["latin"], // Escolha o subset necessário
+  weight: ["400", "700"],
+  subsets: ["latin"],
 });
 
 interface GradualSpacingProps {

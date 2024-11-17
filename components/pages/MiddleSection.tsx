@@ -12,6 +12,7 @@ import actionsTable from "@/assets/actionsTable.png";
 import pagination from "@/assets/pagination.png";
 import RetroGrid from "../ui/retro-grid";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
+import Meteors from "../ui/meteors";
 import GridPattern from "../ui/animated-grid-pattern";
 import { Languages } from "lucide-react";
 
@@ -63,7 +64,11 @@ const features = [
     description: "Supports 100+ languages and counting.",
     href: "/",
     cta: "Learn more",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: (
+      <div className="absolute w-[374px] h-48 left-[20%] top-[0%] opacity-40 -translate-x-[50%] -translate-y-[50%] group">
+        <Meteors number={100} />
+      </div>
+    ),
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4",
   },
   {
@@ -86,14 +91,24 @@ const features = [
       "Get notified when someone shares a file or mentions you in a comment.",
     href: "/",
     cta: "Learn more",
-    background: <Languages />,
+    background: (
+      <div className=" w-full h-full flex justify-center items-end">
+        <Languages
+          style={{
+            color: "#8a8a8a",
+            opacity: 0.4,
+          }}
+          size={140}
+        />
+      </div>
+    ),
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
   },
 ];
 
 export function MiddleSection() {
   return (
-    <BentoGrid className="lg:grid-rows-3">
+    <BentoGrid className="lg:grid-rows-3 max-w-[1500px] mx-auto">
       {features.map((feature) => (
         //@ts-ignore
         <BentoCard key={feature.name} {...feature} />

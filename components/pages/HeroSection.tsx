@@ -39,8 +39,8 @@ export default function HeroSection() {
   }, [buttonControls, showTransition]);
 
   return (
-    <div className="relative">
-      <div className="h-screen flex flex-col justify-center items-center z-[10] relative">
+    <div className="relative ">
+      <div className=" h-[1080px] flex flex-col w-full justify-center items-center z-[10] relative">
         <MainTopBar />
 
         <GradualSpacing
@@ -76,9 +76,6 @@ export default function HeroSection() {
             <NpmStart />
           </div>
         </motion.div>
-      </div>
-      <div className="opacity-30 z-[20] ">
-        <GridPattern maxOpacity={0.2} numSquares={7} height={80} width={80} />
       </div>
     </div>
   );

@@ -125,14 +125,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme }) => {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden z-50 relative">
+    <div className="flex h-[800px]  w-full overflow-hidden z-50 relative mx-auto shadow-[0_2px_8px_0px_rgba(99,99,99,0.2)] rounded-xl">
       <div
         style={{
           background: `white`,
           borderRight: `1px solid ${sideBorder[theme]}`,
           color: mainText[theme],
         }}
-        className={`absolute left-0 top-0 z-40 h-screen transition-all duration-500 ease-in-out flex flex-col ${
+        className={`absolute left-0 top-0 z-40 h-full transition-all duration-500 ease-in-out flex flex-col ${
           isOpen ? "w-64" : "w-20"
         }`}
       >
@@ -278,11 +278,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme }) => {
       </div>
 
       <div
-        className={`flex-1 transition-all duration-500 overflow-hidden ${
+        className={` relative transition-all duration-500 overflow-hidden w-full   ${
           isOpen ? "ml-64" : "ml-[80px]"
         }`}
       >
-        <main>{children}</main>
+        <main className="h-full w-full">{children}</main>
       </div>
     </div>
   );
