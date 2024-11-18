@@ -56,11 +56,12 @@ interface ColorTheme {
 
 interface SidebarProps {
   children: ReactNode;
-  variant: keyof typeof colorTheme;
+  variant: "sapphire" | "crimson";
   theme: "light" | "dark";
+  id?: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme }) => {
+const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [selectedMenuItem, setSelectedMenuItem] = useState<number | null>(null);
   const { mainText, sideBorder, imgBackground } = colorTheme[
@@ -125,7 +126,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme }) => {
   };
 
   return (
-    <div className="flex h-[800px]  w-full overflow-hidden z-50 relative mx-auto shadow-[0_2px_8px_0px_rgba(99,99,99,0.2)] rounded-xl">
+    <div className="flex h-[755px]  w-full overflow-hidden z-50 relative mx-auto shadow-[0_2px_8px_0px_rgba(99,99,99,0.2)] rounded-xl">
       <div
         style={{
           background: `white`,
@@ -248,6 +249,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme }) => {
 
         {/* Footer/Profile */}
         <div
+          id={id}
           className={`
               ${isOpen ? "w-[90%]" : "w-[70%]"}
             bg-[#ece9e9] rounded-full mb-4 p-2 overflow-hidden overflow-x-hidden mx-auto hover:bg-[#d6d2d2] cursor-pointer transition-all duration-300 ease-in-out`}

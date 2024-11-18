@@ -7,8 +7,8 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import { Menu, X } from "lucide-react";
 
-export default function MainTopBar({ showDesktopNav = true }) {
-  const [isHidden, setIsHidden] = useState(false);
+export default function MainTopBar({ showDesktopNav }) {
+  console.log("MainTopBar -> showDesktopNav", showDesktopNav);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // useEffect(() => {
@@ -39,7 +39,7 @@ export default function MainTopBar({ showDesktopNav = true }) {
     <>
       <div
         className={`bg-white shadow-sm w-full fixed top-0 left-0 px-4 md:px-8 lg:px-16 z-[100] transition-transform duration-300 ease-in-out ${
-          isHidden ? "-translate-y-full" : "translate-y-0"
+          showDesktopNav ? "-translate-y-full" : "translate-y-0"
         }`}
       >
         <div className="container mx-auto flex items-center justify-between py-4">
@@ -51,70 +51,67 @@ export default function MainTopBar({ showDesktopNav = true }) {
             </div>
 
             {/* Navigation - Hidden on mobile and controlled by showDesktopNav */}
-            {showDesktopNav && (
-              <nav className="hidden lg:flex space-x-12 text-sm items-center mr-16">
-                <a
-                  href="#"
-                  onClick={handleLinkClick}
-                  className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
-                >
-                  Example
-                </a>
-                <a
-                  href="#"
-                  onClick={handleLinkClick}
-                  className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
-                >
-                  Docs
-                </a>
-                <a
-                  href="#"
-                  onClick={handleLinkClick}
-                  className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
-                >
-                  Contact
-                </a>
-              </nav>
-            )}
+
+            <nav className="hidden lg:flex space-x-12 text-sm items-center mr-16">
+              <a
+                href="#"
+                onClick={handleLinkClick}
+                className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
+              >
+                Example
+              </a>
+              <a
+                href="#"
+                onClick={handleLinkClick}
+                className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
+              >
+                Docs
+              </a>
+              <a
+                href="#"
+                onClick={handleLinkClick}
+                className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
+              >
+                Contact
+              </a>
+            </nav>
 
             {/* GitHub container - Hidden on mobile and controlled by showDesktopNav */}
-            {showDesktopNav && (
-              <div className="hidden lg:flex items-center space-x-2 relative">
-                <a
-                  href="https://github.com/your-repo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleLinkClick}
-                  className="flex group items-center text-white gap-3 px-4 py-[7px] rounded-xl hover:text-neutral-100 bg-[#010409] transition-all duration-700 ease-in-out hover:shadow-[0_0px_20px_2px_rgba(0,0,0,0.2)] overflow-hidden relative"
-                >
-                  <span className="w-8 h-20 opacity-10 group-hover:left-[2%] ease-in-out transition-all duration-1000 from-[#dedede] to-white absolute left-[102%] rotate-12 bg-gradient-to-t group-hover:opacity-20"></span>
-                  <div className="flex items-center justify-center gap-2">
-                    <GitHubIcon className="text-lg" />
-                    <span className="text-[14px] font-medium">
-                      Star on GitHub
-                    </span>
-                  </div>
 
-                  <div className="flex items-center justify-center">
-                    <StarRoundedIcon className="text-lg text-[#6b7280] group-hover:text-[#fcc032] transition-all duration-500 ease-in-out" />
-                    <NumberTicker
-                      value={123}
-                      className="text-white -tracking-wider font-medium"
-                    />
-                  </div>
-                </a>
-              </div>
-            )}
+            <div className="hidden lg:flex items-center space-x-2 relative">
+              <a
+                href="https://github.com/your-repo"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleLinkClick}
+                className="flex group items-center text-white gap-3 px-4 py-[7px] rounded-xl hover:text-neutral-100 bg-[#010409] transition-all duration-700 ease-in-out hover:shadow-[0_0px_20px_2px_rgba(0,0,0,0.2)] overflow-hidden relative"
+              >
+                <span className="w-8 h-20 opacity-10 group-hover:left-[2%] ease-in-out transition-all duration-1000 from-[#dedede] to-white absolute left-[102%] rotate-12 bg-gradient-to-t group-hover:opacity-20"></span>
+                <div className="flex items-center justify-center gap-2">
+                  <GitHubIcon className="text-lg" />
+                  <span className="text-[14px] font-medium">
+                    Star on GitHub
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-center">
+                  <StarRoundedIcon className="text-lg text-[#6b7280] group-hover:text-[#fcc032] transition-all duration-500 ease-in-out" />
+                  <NumberTicker
+                    value={123}
+                    className="text-white -tracking-wider font-medium"
+                  />
+                </div>
+              </a>
+            </div>
           </div>
 
           {/* Get Started button - Hidden on mobile and controlled by showDesktopNav */}
-          {showDesktopNav && (
-            <div className="hidden lg:block">
-              <ShimmerButton>
-                <p className="text-sm font-medium">Get Started</p>
-              </ShimmerButton>
-            </div>
-          )}
+
+          <div className="hidden lg:block">
+            <ShimmerButton>
+              <p className="text-sm font-medium">Get Started</p>
+            </ShimmerButton>
+          </div>
 
           {/* Mobile menu button */}
           <button

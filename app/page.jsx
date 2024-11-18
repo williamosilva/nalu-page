@@ -14,102 +14,175 @@ import EventHandlers from "@/components/pages/EventHandlers";
 import SparklesText from "@/components/ui/sparkles-text";
 import GetStartFooter from "@/components/pages/GetStartFooter";
 import { Poppins } from "@next/font/google";
+import DefaultDock from "@/components/ui/DefaultDock";
+import useNavbarVisibility from "@/hooks/useNavbarVisibility";
 
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 const poppinsFont = Poppins({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
 
-export default function Main({ variant = "sapphire", theme = "light" }) {
-  return (
-    <div className="relative w-full">
-      <div className="relative container  mx-auto   mb-20 flex flex-col justify-center items-center ">
-        <div className="flex flex-col w-full relative z-[2] items-center justify-center">
-          <MainTopBar />
-          <div className="min-h-auto w-full">
-            <HeroSection variant="sapphire" theme="light" />
-          </div>
-          <div className="min-h-auto w-full mb-56 md:px-0 px-6 ">
-            <MiddleSection variant="sapphire" theme="light" />
-          </div>
-          <div className="min-h-auto md:px-0 px-6 flex flex-col gap-28 w-full">
-            <SparklesText
-              className={cn(
-                "text-5xl font-bold text-center mt-16 text-[#320E48]",
-                poppinsFont.className
-              )}
-              text="Usage Example"
-              colors={{ first: "#c580ff", second: "#8c00ff" }}
-              sparklesCount={5}
-            />
-            <Example variant="sapphire" theme="light" />
-          </div>
-          <div className="min-h-auto flex flex-col gap-6 2xl:w-[50%]  w-[80%] items-center">
-            <h1
-              className={cn(
-                "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                poppinsFont.className
-              )}
-            >
-              Installation
-            </h1>
-            <InstallationSection variant="sapphire" theme="light" />
-          </div>
-          <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
-            <h1
-              className={cn(
-                "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                poppinsFont.className
-              )}
-            >
-              Quick Start
-            </h1>
-            <QuickStart variant="sapphire" theme="light" />
-          </div>
-          <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
-            <h1
-              className={cn(
-                "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                poppinsFont.className
-              )}
-            >
-              Props
-            </h1>
-            <Props />
-          </div>
-          <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
-            <h1
-              className={cn(
-                "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                poppinsFont.className
-              )}
-            >
-              Event Handlers
-            </h1>
-            <EventHandlers />
-          </div>
-          <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%] ">
-            <h1
-              className={cn(
-                "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                poppinsFont.className
-              )}
-            >
-              Examples
-            </h1>
+export default function Main() {
+  // const [isNavbarHidden, setIsNavbarHidden] = useState(false);
+  const isNavbarHidden = useNavbarVisibility(1920, 2800);
+  const [theme, setTheme] = useState("light");
+  const [style, setStyle] = useState("sapphire");
+  const [isPlusButton, setIsPlusButton] = useState(false);
+  const [isHeaderButton, setIsHeaderButton] = useState(false);
+  const [isTabButton, setIsTabButton] = useState(false);
 
-            <BasicExamples />
+  function toggleTheme() {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  }
+
+  function toggleStyle() {
+    setStyle((prev) => (prev === "sapphire" ? "crimson" : "sapphire"));
+  }
+
+  // useEffect(() => {
+  //   console.log("isNavbarHidden", isNavbarHidden);
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       console.log("Entry isIntersecting:", entry.isIntersecting); // Verifique o valor de isIntersecting
+  //       setIsNavbarHidden(!entry.isIntersecting);
+  //     },
+  //     {
+  //       root: null,
+  //       threshold: 1, // Defina o valor de visibilidade do elemento para ativar o callback
+  //     }
+  //   );
+
+  //   const target = document.getElementById("trigger-section");
+  //   if (target) observer.observe(target);
+
+  //   return () => {
+  //     if (target) observer.unobserve(target);
+  //   };
+  // }, []);
+
+  return (
+    <>
+      <div className="relative w-full">
+        <MainTopBar showDesktopNav={isNavbarHidden} />
+        <div className="relative container  mx-auto   mb-20 flex flex-col justify-center items-center ">
+          <div className="flex flex-col w-full relative z-[2] items-center justify-center">
+            {/* Esconde a navbar quando isNavbarHidden for true */}
+            <div className="min-h-auto w-full">
+              <HeroSection variant="sapphire" theme="light" />
+            </div>
+            <div className="min-h-auto w-full mb-56 md:px-0 px-6 ">
+              <MiddleSection variant="sapphire" theme="light" />
+            </div>
+            <div className="min-h-auto md:px-8 px-6 flex flex-col gap-28 w-full">
+              <SparklesText
+                className={cn(
+                  "text-5xl font-bold text-center mt-16 text-[#320E48]",
+                  poppinsFont.className
+                )}
+                text="Usage Example"
+                colors={{ first: "#c580ff", second: "#8c00ff" }}
+                sparklesCount={5}
+              />
+              <Example
+                variant={style}
+                theme={theme}
+                id="trigger-section"
+                tabButton={isTabButton}
+                plusButton={isPlusButton}
+                header={isHeaderButton}
+              />
+            </div>
+            <div className="min-h-auto flex flex-col gap-6 2xl:w-[50%]  w-[80%] items-center">
+              <h1
+                className={cn(
+                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                  poppinsFont.className
+                )}
+              >
+                Installation
+              </h1>
+              <InstallationSection variant="sapphire" theme="light" />
+            </div>
+            <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
+              <h1
+                className={cn(
+                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                  poppinsFont.className
+                )}
+              >
+                Quick Start
+              </h1>
+              <QuickStart variant="sapphire" theme="light" />
+            </div>
+            <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
+              <h1
+                className={cn(
+                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                  poppinsFont.className
+                )}
+              >
+                Props
+              </h1>
+              <Props />
+            </div>
+            <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
+              <h1
+                className={cn(
+                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                  poppinsFont.className
+                )}
+              >
+                Event Handlers
+              </h1>
+              <EventHandlers />
+            </div>
+            <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%] ">
+              <h1
+                className={cn(
+                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                  poppinsFont.className
+                )}
+              >
+                Examples
+              </h1>
+
+              <BasicExamples />
+            </div>
+          </div>
+          <div className=" z-[1] opacity-20   ">
+            <GridPattern
+              maxOpacity={0.5}
+              numSquares={7}
+              height={80}
+              width={80}
+            />
           </div>
         </div>
-        <div className=" z-[1] opacity-20   ">
-          <GridPattern maxOpacity={0.5} numSquares={7} height={80} width={80} />
-        </div>
+        <GetStartFooter />
+        <Footer />
       </div>
-      <GetStartFooter />
-      <Footer />
-    </div>
+      <DefaultDock
+        isShow={isNavbarHidden}
+        plusButton={() => {
+          setIsPlusButton((prev) => !prev);
+        }}
+        tabButton={() => {
+          setIsTabButton((prev) => !prev);
+        }}
+        themeToggle={() => {
+          toggleTheme();
+        }}
+        styleToggle={() => {
+          toggleStyle();
+        }}
+        headerButton={() => {
+          setIsHeaderButton((prev) => !prev);
+        }}
+      />
+    </>
     // <div className="w-screen h-screen flex flex-col ">
 
     // </div>

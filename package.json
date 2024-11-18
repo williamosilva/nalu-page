@@ -21,11 +21,13 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.17",
+    "intersection-observer": "^0.12.2",
     "lucide-react": "^0.453.0",
     "nalu-table": "^1.0.7",
     "next": "14.2.16",
     "react": "^18",
     "react-dom": "^18",
+    "react-responsive": "^10.0.0",
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
