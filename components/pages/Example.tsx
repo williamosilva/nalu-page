@@ -26,14 +26,14 @@ export default function Example({
   const { backgroundGradient } = colorTheme[variant];
 
   return (
-    <Sidebar variant="sapphire" theme="light" id={id}>
+    <Sidebar variant={variant} theme={theme} id={id}>
       <div
         className="flex flex-col w-full h-full"
         style={{
-          background: `linear-gradient(280deg, ${backgroundGradient.firstColor[theme]}, ${backgroundGradient.finalColor[theme]})`,
+          background: `${backgroundGradient.firstColor[theme]}`,
         }}
       >
-        <Topbar />
+        <Topbar variant={variant} theme={theme} />
         <div className="px-8 pb-0 pt-16">
           <NaluTable
             itemsPerPage={10}

@@ -27,7 +27,7 @@ const poppinsFont = Poppins({
 
 export default function Main() {
   // const [isNavbarHidden, setIsNavbarHidden] = useState(false);
-  const isNavbarHidden = useNavbarVisibility(1920, 2800);
+  const isNavbarHidden = useNavbarVisibility(1900, 2800);
   const [theme, setTheme] = useState("light");
   const [style, setStyle] = useState("sapphire");
   const [isPlusButton, setIsPlusButton] = useState(false);
@@ -41,27 +41,6 @@ export default function Main() {
   function toggleStyle() {
     setStyle((prev) => (prev === "sapphire" ? "crimson" : "sapphire"));
   }
-
-  // useEffect(() => {
-  //   console.log("isNavbarHidden", isNavbarHidden);
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       console.log("Entry isIntersecting:", entry.isIntersecting); // Verifique o valor de isIntersecting
-  //       setIsNavbarHidden(!entry.isIntersecting);
-  //     },
-  //     {
-  //       root: null,
-  //       threshold: 1, // Defina o valor de visibilidade do elemento para ativar o callback
-  //     }
-  //   );
-
-  //   const target = document.getElementById("trigger-section");
-  //   if (target) observer.observe(target);
-
-  //   return () => {
-  //     if (target) observer.unobserve(target);
-  //   };
-  // }, []);
 
   return (
     <>

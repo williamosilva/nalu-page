@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import colorTheme from "@/components/constants/colorTheme";
 import NaluLogo from "@/assets/NaluSapphire.svg";
+import NaluLogoCrimsom from "@/assets/NaluCrimson.svg";
 import Profile from "@/assets/Profile.jpg";
 
 interface Badge {
@@ -64,9 +65,10 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [selectedMenuItem, setSelectedMenuItem] = useState<number | null>(null);
-  const { mainText, sideBorder, imgBackground } = colorTheme[
-    variant
-  ] as ColorTheme;
+  const { mainText, sideBorder, imgBackground, backgroundGradient } =
+    colorTheme[variant] as ColorTheme;
+
+  console.log("oie", backgroundGradient.firstColor[theme]);
 
   const menuItems: MenuItem[] = [
     { icon: LayoutGrid, label: "Overview", href: "/" },
@@ -129,7 +131,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
     <div className="flex h-[755px]  w-full overflow-hidden z-50 relative mx-auto shadow-[0_2px_8px_0px_rgba(99,99,99,0.2)] rounded-xl">
       <div
         style={{
-          background: `white`,
+          background: `${backgroundGradient.firstColor[theme]}`,
           borderRight: `1px solid ${sideBorder[theme]}`,
           color: mainText[theme],
         }}
@@ -151,7 +153,12 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
               className={`flex items-center justify-center border rounded-2xl transition-all duration-500 ease-in-out
                 ${isOpen ? "w-14 h-14 p-2" : "w-0 h-0 p-0"}`}
             >
-              <Image src={NaluLogo} alt="Nalu Logo" width={56} height={56} />
+              <Image
+                src={variant === "sapphire" ? NaluLogo : NaluLogoCrimsom}
+                alt="Nalu Logo"
+                width={56}
+                height={56}
+              />
             </div>
 
             <div className="w-14 h-14 flex items-center justify-center relative z-50 ">
