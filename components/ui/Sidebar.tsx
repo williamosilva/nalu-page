@@ -45,6 +45,16 @@ interface ColorTheme {
     light: string;
     dark: string;
   };
+
+  mainTextItemsHover: {
+    light: string;
+    dark: string;
+  };
+  mainTextItems: {
+    light: string;
+    dark: string;
+  };
+
   sideBorder: {
     light: string;
     dark: string;
@@ -65,10 +75,15 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [selectedMenuItem, setSelectedMenuItem] = useState<number | null>(null);
-  const { mainText, sideBorder, imgBackground, backgroundGradient } =
-    colorTheme[variant] as ColorTheme;
+  const {
+    mainText,
+    sideBorder,
+    imgBackground,
+    backgroundGradient,
+    mainTextItemsHover,
+  } = colorTheme[variant] as ColorTheme;
 
-  console.log("oie", backgroundGradient.firstColor[theme]);
+  // console.log("oie", backgroundGradient.firstColor[theme]);
 
   const menuItems: MenuItem[] = [
     { icon: LayoutGrid, label: "Overview", href: "/" },
@@ -133,7 +148,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
         style={{
           background: `${backgroundGradient.firstColor[theme]}`,
           borderRight: `1px solid ${sideBorder[theme]}`,
-          color: mainText[theme],
+          color: "#f33",
         }}
         className={`absolute left-0 top-0 z-40 h-full transition-all duration-500 ease-in-out flex flex-col ${
           isOpen ? "w-64" : "w-20"
@@ -214,8 +229,15 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
                 key={item.label}
                 style={{
                   borderColor: sideBorder[theme],
+                  // color: mainText[theme],
                 }}
-                className={`relative px-3 py-4 text-sm font-medium transition-all text-neutral-600 cursor-pointer hover:text-neutral-950 ${
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = mainTextItemsHover[theme])
+                }
+                // onMouseLeave={(e) =>
+                //   (e.currentTarget.style.color = mainText[theme])
+                // }
+                className={`relative px-3 py-4 text-sm font-medium transition-all  cursor-pointer hover:text-neutral-950 ${
                   index === menuItems.length - 1 ? "" : "border-b-[1px]"
                 } ${
                   isOpen
