@@ -46,7 +46,14 @@ const Topbar: React.FC<TopbarProps> = ({
     return null;
   }
 
-  const { backgroundGradient, sideBorder } = currentTheme;
+  const {
+    backgroundGradient,
+    sideBorder,
+    searchBackground,
+    searchTextColor,
+    searchIconColor,
+    iconButton,
+  } = currentTheme;
 
   if (!backgroundGradient || !sideBorder) {
     console.error(`Invalid theme structure for variant: ${variant}`);
@@ -63,14 +70,26 @@ const Topbar: React.FC<TopbarProps> = ({
         background: backgroundGradient.firstColor[theme],
         borderColor: sideBorder[theme],
       }}
-      className="w-full h-16 border-b flex items-center justify-between px-4 top-0 left-0 right-0"
+      className="w-full h-16 border-b flex items-center justify-between px-4 top-0 left-0 right-0 transition-all 
+      duration-300 ease-in-out"
     >
       {/* Middle Section - Search */}
-      <div className="hidden md:flex items-center flex-1 max-w-xl mx-8">
-        <div className="w-full relative flex items-center justify-center py-2 bg-gray-100 rounded-lg">
-          <div className="flex items-center text-gray-400 space-x-4">
-            <Search className="h-5 w-5 text-gray-800" aria-hidden="true" />
-            <span className="text-gray-500">What are you looking for?</span>
+      <div className="hidden md:flex items-center flex-1 max-w-xl mx-auto">
+        <div
+          style={{
+            background: searchBackground[theme],
+          }}
+          className="w-full relative flex items-center justify-center py-2  rounded-lg"
+        >
+          <div className="flex items-center  space-x-4">
+            <Search
+              className="h-5 w-5 "
+              aria-hidden="true"
+              style={{ color: searchIconColor[theme] }}
+            />
+            <span style={{ color: searchTextColor[theme] }}>
+              What are you looking for?
+            </span>
           </div>
           <input
             type="text"
@@ -83,21 +102,15 @@ const Topbar: React.FC<TopbarProps> = ({
 
       {/* Right Section - Icons */}
       <div className="flex items-center space-x-4">
-        <IconButton
-          hasNotification
-          aria-label="Notifications"
-          theme="bg-blue-100"
-          variant="text-blue-500"
-        >
-          <Bell className="h-5 w-5 text-gray-600" />
+        <IconButton hasNotification aria-label="Notifications" theme={theme}>
+          <Bell className="h-5 w-5 " style={{ color: iconButton[theme] }} />
         </IconButton>
 
-        <IconButton
-          aria-label="Messages"
-          theme="bg-green-100"
-          variant="text-green-500"
-        >
-          <MessageCircle className="h-5 w-5 text-gray-600" />
+        <IconButton aria-label="Messages">
+          <MessageCircle
+            className="h-5 w-5 "
+            style={{ color: iconButton[theme] }}
+          />
         </IconButton>
       </div>
     </div>

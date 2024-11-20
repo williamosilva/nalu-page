@@ -63,6 +63,38 @@ interface ColorTheme {
     light: string;
     dark: string;
   };
+  buttonBackground: {
+    light: string;
+    dark: string;
+  };
+  buttonBackgroundHover: {
+    light: string;
+    dark: string;
+  };
+  titleButton: {
+    light: string;
+    dark: string;
+  };
+  subtitleButton: {
+    light: string;
+    dark: string;
+  };
+  iconButton: {
+    light: string;
+    dark: string;
+  };
+  sideButtonBackground: {
+    light: string;
+    dark: string;
+  };
+  sideButtonBackgroundHover: {
+    light: string;
+    dark: string;
+  };
+  sideButtonTextColor: {
+    light: string;
+    dark: string;
+  };
 }
 
 interface SidebarProps {
@@ -73,6 +105,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
+  const [isHoveredSideButton, setIsHoveredSideButton] =
+    useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [selectedMenuItem, setSelectedMenuItem] = useState<number | null>(null);
   const {
@@ -81,6 +115,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
     imgBackground,
     backgroundGradient,
     mainTextItemsHover,
+    buttonBackground,
+    buttonBackgroundHover,
+    titleButton,
+    subtitleButton,
+    iconButton,
+    sideButtonBackground,
+    sideButtonBackgroundHover,
+    sideButtonTextColor,
   } = colorTheme[variant] as ColorTheme;
 
   // console.log("oie", backgroundGradient.firstColor[theme]);
@@ -142,6 +184,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
     }
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div className="flex h-[755px]  w-full overflow-hidden z-50 relative mx-auto shadow-[0_2px_8px_0px_rgba(99,99,99,0.2)] rounded-xl">
       <div
@@ -164,9 +208,10 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
             <div
               style={{
                 background: imgBackground[theme],
+                borderColor: sideBorder[theme],
               }}
-              className={`flex items-center justify-center border rounded-2xl transition-all duration-500 ease-in-out
-                ${isOpen ? "w-14 h-14 p-2" : "w-0 h-0 p-0"}`}
+              className={`flex items-center justify-center  rounded-2xl transition-all duration-500 ease-in-out
+                ${isOpen ? "w-14 h-14 p-2 border" : "w-0 h-0 p-0 border-0"}`}
             >
               <Image
                 src={variant === "sapphire" ? NaluLogo : NaluLogoCrimsom}
@@ -179,10 +224,17 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
             <div className="w-14 h-14 flex items-center justify-center relative z-50 ">
               <button
                 onClick={toggleSidebar}
+                onMouseEnter={() => setIsHoveredSideButton(true)}
+                onMouseLeave={() => setIsHoveredSideButton(false)}
                 style={{
                   border: isOpen
                     ? `1px solid ${sideBorder[theme]}`
-                    : "1px solid #ffffff",
+                    : `1px solid ${sideBorder[theme]}`,
+
+                  background: isHoveredSideButton
+                    ? sideButtonBackgroundHover[theme]
+                    : sideButtonBackground[theme],
+                  color: sideButtonTextColor[theme],
                 }}
                 className={`
                   ${
@@ -190,7 +242,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
                       ? "absolute top-[50%] left-[130%] -translate-x-1/2 -translate-y-1/2"
                       : "absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
                   }
-                  flex h-8 w-8 items-center justify-center rounded-full bg-[#ffffff] hover:bg-[#ffefff] group text-gray-900 transition-all duration-500 ease-in-out
+                  flex h-8 w-8 items-center justify-center rounded-full transition-all duration-500 ease-in-out
                 `}
               >
                 <X
@@ -229,15 +281,15 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
                 key={item.label}
                 style={{
                   borderColor: sideBorder[theme],
-                  // color: mainText[theme],
+                  color: mainText[theme],
                 }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.color = mainTextItemsHover[theme])
                 }
-                // onMouseLeave={(e) =>
-                //   (e.currentTarget.style.color = mainText[theme])
-                // }
-                className={`relative px-3 py-4 text-sm font-medium transition-all  cursor-pointer hover:text-neutral-950 ${
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = mainText[theme])
+                }
+                className={`relative px-3 py-4 text-sm font-medium transition-all  cursor-pointer  ${
                   index === menuItems.length - 1 ? "" : "border-b-[1px]"
                 } ${
                   isOpen
@@ -247,7 +299,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
                 onClick={() => handleMenuItemClick(index)}
               >
                 <Link
-                  href={item.href}
+                  href={``}
                   className="flex items-center justify-between w-full"
                 >
                   <div className="flex items-center">
@@ -279,9 +331,17 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
         {/* Footer/Profile */}
         <div
           id={id}
+          style={{
+            background: isHovered
+              ? buttonBackgroundHover[theme]
+              : buttonBackground[theme],
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           className={`
-              ${isOpen ? "w-[90%]" : "w-[70%]"}
-            bg-[#ece9e9] rounded-full mb-4 p-2 overflow-hidden overflow-x-hidden mx-auto hover:bg-[#d6d2d2] cursor-pointer transition-all duration-300 ease-in-out`}
+        ${isOpen ? "w-[90%]" : "w-[70%]"}
+        rounded-full mb-4 p-2 overflow-hidden overflow-x-hidden mx-auto cursor-pointer transition-all duration-300 ease-in-out
+      `}
         >
           <div className="flex items-center">
             <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
@@ -293,14 +353,31 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
                 isOpen ? "w-full ml-3" : "w-0 ml-0"
               } transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap overflow-x-hidden select-none`}
             >
-              <p className="text-sm font-medium">William Silva</p>
-              <p className="text-xs text-neutral-500">Send email</p>
+              <p
+                className="text-sm font-medium "
+                style={{
+                  color: titleButton[theme],
+                }}
+              >
+                William Silva
+              </p>
+              <p
+                className="text-xs text-neutral-500"
+                style={{
+                  color: subtitleButton[theme],
+                }}
+              >
+                Send email
+              </p>
             </div>
 
             <div
+              style={{
+                color: iconButton[theme],
+              }}
               className={` ${
                 isOpen ? "h-5 w-5" : "h-0 w-0"
-              } flex-shrink-0 flex items-center justify-center mr-3 text-[#89838d]`}
+              } flex-shrink-0 flex items-center justify-center mr-3 `}
             >
               <Ellipsis />
             </div>

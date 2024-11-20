@@ -28,7 +28,7 @@ export default function Example({
   return (
     <Sidebar variant={variant} theme={theme} id={id}>
       <div
-        className="flex flex-col w-full h-full"
+        className="flex flex-col w-full h-full transition-all duration-300 ease-in-out"
         style={{
           background: `${backgroundGradient.firstColor[theme]}`,
         }}
