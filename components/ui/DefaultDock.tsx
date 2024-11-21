@@ -5,6 +5,7 @@ import { Brush } from "lucide-react";
 import { SquarePlus } from "lucide-react";
 import { ListStart } from "lucide-react";
 import { TableCellsMerge } from "lucide-react";
+import colorTheme from "@/components/constants/colorTheme";
 
 import { IconButton } from "@mui/material";
 import { useState } from "react";
@@ -16,8 +17,16 @@ export default function DefaultDock({
   tabButton,
   headerButton,
   plusButton,
+  variant = "sapphire",
+  theme = "light",
 }) {
   const [isToggleTheme, setIsToggleTheme] = useState("light");
+  const { dockIconColor, dockBackgroundColor } = colorTheme[variant];
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered2, setIsHovered2] = useState(false);
+  const [isHovered3, setIsHovered3] = useState(false);
+  const [isHovered4, setIsHovered4] = useState(false);
+  const [isHovered5, setIsHovered5] = useState(false);
 
   function toggleTheme() {
     setIsToggleTheme(isToggleTheme === "light" ? "dark" : "light");
@@ -39,8 +48,15 @@ export default function DefaultDock({
         <DockIcon>
           <IconButton
             size="large"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             onClick={toggleTheme}
-            className="hover:bg-neutral-200"
+            style={{
+              background: isHovered
+                ? dockBackgroundColor[theme]
+                : "transparent",
+              color: dockIconColor[theme],
+            }}
           >
             {isToggleTheme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </IconButton>
@@ -48,7 +64,15 @@ export default function DefaultDock({
         <DockIcon>
           <IconButton
             size="large"
-            className="hover:bg-neutral-200"
+            onMouseEnter={() => setIsHovered2(true)}
+            onMouseLeave={() => setIsHovered2(false)}
+            className="transition-all duration-300 ease-in-out"
+            style={{
+              background: isHovered2
+                ? dockBackgroundColor[theme]
+                : "transparent",
+              color: dockIconColor[theme],
+            }}
             onClick={() => {
               styleToggle();
             }}
@@ -60,7 +84,14 @@ export default function DefaultDock({
         <DockIcon>
           <IconButton
             size="large"
-            className="hover:bg-neutral-200"
+            onMouseEnter={() => setIsHovered3(true)}
+            onMouseLeave={() => setIsHovered3(false)}
+            style={{
+              background: isHovered3
+                ? dockBackgroundColor[theme]
+                : "transparent",
+              color: dockIconColor[theme],
+            }}
             onClick={() => {
               plusButton();
             }}
@@ -71,7 +102,14 @@ export default function DefaultDock({
         <DockIcon>
           <IconButton
             size="large"
-            className="hover:bg-neutral-200"
+            onMouseEnter={() => setIsHovered4(true)}
+            onMouseLeave={() => setIsHovered4(false)}
+            style={{
+              background: isHovered4
+                ? dockBackgroundColor[theme]
+                : "transparent",
+              color: dockIconColor[theme],
+            }}
             onClick={() => {
               headerButton();
             }}
@@ -82,7 +120,14 @@ export default function DefaultDock({
         <DockIcon>
           <IconButton
             size="large"
-            className="hover:bg-neutral-200"
+            onMouseEnter={() => setIsHovered5(true)}
+            onMouseLeave={() => setIsHovered5(false)}
+            style={{
+              background: isHovered5
+                ? dockBackgroundColor[theme]
+                : "transparent",
+              color: dockIconColor[theme],
+            }}
             onClick={() => {
               tabButton();
             }}

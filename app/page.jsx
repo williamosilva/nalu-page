@@ -160,6 +160,8 @@ export default function Main() {
         headerButton={() => {
           setIsHeaderButton((prev) => !prev);
         }}
+        theme={theme}
+        variant={style}
       />
     </>
     // <div className="w-screen h-screen flex flex-col ">

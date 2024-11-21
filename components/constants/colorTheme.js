@@ -87,6 +87,21 @@ const colorThemes = {
       light: "#4b5563",
       dark: "#aab2bd",
     },
+
+    iconButtonHover: {
+      light: "#f3f4f6",
+      dark: "#3b3b3b",
+    },
+
+    dockIconColor: {
+      light: "#7a7a7a",
+      dark: "#b0b0b0",
+    },
+
+    dockBackgroundColor: {
+      light: "#e5e5e5",
+      dark: "#474747",
+    },
   },
   crimson: {
     backgroundGradient: {
@@ -174,6 +189,15 @@ const colorThemes = {
     iconButton: {
       light: "#4b5563",
       dark: "#aab2bd",
+    },
+    dockIconColor: {
+      light: "#7a7a7a",
+      dark: "#b0b0b0",
+    },
+
+    dockBackgroundColor: {
+      light: "#e5e5e5",
+      dark: "#474747",
     },
   },
 };

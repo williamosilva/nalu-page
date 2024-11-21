@@ -354,7 +354,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
               } transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap overflow-x-hidden select-none`}
             >
               <p
-                className="text-sm font-medium "
+                className="text-sm font-medium transition-all duration-300 ease-in-out "
                 style={{
                   color: titleButton[theme],
                 }}
@@ -362,7 +362,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
                 William Silva
               </p>
               <p
-                className="text-xs text-neutral-500"
+                className="text-xs transition-all duration-300 ease-in-out"
                 style={{
                   color: subtitleButton[theme],
                 }}
@@ -377,7 +377,9 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
               }}
               className={` ${
                 isOpen ? "h-5 w-5" : "h-0 w-0"
-              } flex-shrink-0 flex items-center justify-center mr-3 `}
+              } flex-shrink-0 flex items-center 
+                transition-all duration-300 ease-in-out
+                justify-center mr-3 `}
             >
               <Ellipsis />
             </div>

@@ -16,8 +16,23 @@ const IconButton: React.FC<ButtonProps> = ({
   variant,
   ...props
 }) => {
+  const currentTheme = colorTheme[variant];
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  if (!currentTheme) {
+    console.error(`Invalid variant: ${variant}`);
+    return null;
+  }
+
+  const { iconButtonHover } = currentTheme;
+
   return (
     <button
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        background: isHovered ? iconButtonHover[theme] : "transparent ",
+      }}
       className={`p-2 hover:bg-gray-100 rounded-full relative transition-all duration-300 ease-in-out ${theme} ${variant}`}
       {...props}
     >
@@ -79,11 +94,11 @@ const Topbar: React.FC<TopbarProps> = ({
           style={{
             background: searchBackground[theme],
           }}
-          className="w-full relative flex items-center justify-center py-2  rounded-lg"
+          className="w-full relative flex items-center justify-center py-2 transition-all duration-300 ease-in-out  rounded-lg"
         >
           <div className="flex items-center  space-x-4">
             <Search
-              className="h-5 w-5 "
+              className="h-5 w-5 transition-all duration-300 ease-in-out "
               aria-hidden="true"
               style={{ color: searchIconColor[theme] }}
             />
@@ -102,11 +117,16 @@ const Topbar: React.FC<TopbarProps> = ({
 
       {/* Right Section - Icons */}
       <div className="flex items-center space-x-4">
-        <IconButton hasNotification aria-label="Notifications" theme={theme}>
+        <IconButton
+          hasNotification
+          aria-label="Notifications"
+          theme={theme}
+          variant={variant}
+        >
           <Bell className="h-5 w-5 " style={{ color: iconButton[theme] }} />
         </IconButton>
 
-        <IconButton aria-label="Messages">
+        <IconButton aria-label="Messages" variant={variant} theme={theme}>
           <MessageCircle
             className="h-5 w-5 "
             style={{ color: iconButton[theme] }}

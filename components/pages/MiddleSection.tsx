@@ -7,6 +7,7 @@ import {
   GlobeIcon,
   InputIcon,
 } from "@radix-ui/react-icons";
+import { SquareChartGantt } from "lucide-react";
 import Image from "next/image";
 import actionsTable from "@/assets/actionsTable.png";
 import pagination from "@/assets/pagination.png";
@@ -18,17 +19,17 @@ import { Languages } from "lucide-react";
 
 const features = [
   {
-    Icon: FileTextIcon,
-    name: "Save your files",
-    description: "We automatically save your files as you type.",
+    Icon: SquareChartGantt,
+    name: "Individual actions",
+    description: "Individual actions for each table item.",
     href: "/",
     cta: "Learn more",
     background: (
-      <div className="absolute w-full right-[40%] top-[60%] transform translate-x-1/2 -translate-y-1/2 group">
+      <div className="absolute w-full right-[40%] top-[80%] transform translate-x-1/2 -translate-y-1/2 group">
         <Image
           src={actionsTable}
           alt="Actions table"
-          className="relative object-cover w-[370px] h-[400px] opacity-60 border border-neutral-200 rounded-xl"
+          className="relative object-cover w-[370px] h-[476px] opacity-60 border border-neutral-200 rounded-xl"
         />
         <div className="absolute inset-0 bg-gradient-to-tl from-white/100 via-white/90 to-transparent rounded-lg" />
         <div className="absolute inset-0 backdrop-blur-sm  group-hover:backdrop-blur-0 transition-all duration-300 ease-in-out rounded-xl" />
@@ -40,16 +41,16 @@ const features = [
   },
   {
     Icon: InputIcon,
-    name: "Full text search",
-    description: "Search through all your files in one place.",
-    href: "/",
-    cta: "Learn more",
+    name: "Pagination",
+    description: "Browse pages with the limit defined by you.",
+    // href: "/",
+    // cta: "Learn more",
     background: (
       <div className="absolute w-full right-[40%] top-[50%] transform translate-x-1/2 -translate-y-1/2 group">
         <Image
           src={pagination}
           alt="Actions table"
-          className="relative object-cover w-[290px] h-[90px] opacity-60 border border-neutral-200 rounded-xl"
+          className="relative object-cover w-[340px] h-[110px] opacity-60 border border-neutral-200 rounded-xl"
         />
         <div className="absolute inset-0 bg-gradient-to-tl from-white/100 via-white/90 to-transparent rounded-lg" />
         <div className="absolute inset-0 backdrop-blur-sm  group-hover:backdrop-blur-0 transition-all duration-300 ease-in-out rounded-xl" />
@@ -85,20 +86,26 @@ const features = [
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
   {
-    Icon: BellIcon,
-    name: "Notifications",
-    description:
-      "Get notified when someone shares a file or mentions you in a comment.",
-    href: "/",
-    cta: "Learn more",
+    Icon: GlobeIcon,
+    name: "Two languages",
+    description: "Support for Portuguese and English.",
+
+    hoverBackground: "scale",
     background: (
-      <div className=" w-full h-full flex justify-center items-end">
+      <div className=" w-full h-full flex justify-center items-center mt-10 relative text-2xl gap-6 font-thin select-none">
+        <p className="opacity-25">&quot;Hello world!&quot;</p>
+        <div className="h-10 bg-neutral-400 w-[1px] opacity-25"></div>
+        <p className="opacity-25">&quot;Olá mundo!&quot;</p>
+
         <Languages
           style={{
             color: "#8a8a8a",
-            opacity: 0.4,
+            opacity: 0.2,
+            position: "absolute",
+            top: "2%",
+            left: "85%",
           }}
-          size={140}
+          size={40}
         />
       </div>
     ),
