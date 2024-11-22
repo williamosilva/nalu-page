@@ -12,7 +12,12 @@ const poppinsFont = Poppins({
   subsets: ["latin"],
 });
 
-export default function Footer() {
+const links = [
+  { id: "docs", label: "Docs" },
+  { id: "example", label: "Example" },
+];
+
+export default function Footer({ onLinkClick }) {
   return (
     <footer className="  border-gray-100 bg-white flex flex-col items-center">
       <div className="w-full   px-4  sm:px-6 lg:px-14 py-14 flex justify-between md:flex-row flex-col md:gap-0 gap-12 items-center">
@@ -20,7 +25,7 @@ export default function Footer() {
         <div className="flex items-center md:items-start w-full  flex-col gap-2">
           <div
             className={cn(
-              "text-lg font-medium text-[#3b3b3b]",
+              "text-lg select-none font-medium text-[#3b3b3b]",
               poppinsFont.className
             )}
           >
@@ -35,7 +40,21 @@ export default function Footer() {
         </div>
         {/* Links */}
         <div className="flex gap-16 flex-row w-full justify-center mr-0">
-          <a
+          {links.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`} // Fallback para navegadores sem JS
+              onClick={(e) => {
+                e.preventDefault();
+                onLinkClick(link.id);
+              }}
+              className="text-gray-600 hover:text-gray-900 text-base font-medium"
+            >
+              {link.label}
+            </a>
+          ))}
+
+          {/* <a
             href="/about"
             className="text-gray-600 hover:text-gray-900 text-base font-medium"
           >
@@ -46,12 +65,13 @@ export default function Footer() {
             className="text-gray-600 hover:text-gray-900 text-base font-medium"
           >
             Docs
-          </a>
+          </a> */}
           <a
-            href="/contact"
+            href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
+            target="_blank"
             className="text-gray-600 hover:text-gray-900 text-base font-medium"
           >
-            Installation
+            Contact
           </a>
         </div>
         {/* Redes sociais */}
@@ -59,7 +79,7 @@ export default function Footer() {
         <div className="flex gap-6 w-full  justify-center md:justify-end">
           <a
             href="
-              https://www.linkedin.com/in/rafael-oliveira-7a6b7b1b7/"
+             https://williamoliveirasilva.online/"
             target="_blank"
             rel="noopener noreferrer"
             className="border opacity-70 p-[10px] transition-all duration-300 ease-in-out rounded-full text-[#b8b8b8] border-[#b8b8b8] hover:bg-[#ececec] "
@@ -68,7 +88,7 @@ export default function Footer() {
           </a>
           <a
             href="
-              https://www.linkedin.com/in/rafael-oliveira-7a6b7b1b7/"
+             https://github.com/WilliamSilvaOliveiraa"
             target="_blank"
             rel="noopener noreferrer"
             className="border opacity-70 p-[10px] transition-all duration-300 ease-in-out rounded-full text-[#b8b8b8] border-[#b8b8b8] hover:bg-[#ececec] "
@@ -77,7 +97,7 @@ export default function Footer() {
           </a>
           <a
             href="
-              https://www.linkedin.com/in/rafael-oliveira-7a6b7b1b7/"
+              https://www.linkedin.com/in/williamsilva2005"
             target="_blank"
             rel="noopener noreferrer"
             className="border opacity-70 p-[10px] transition-all duration-300 ease-in-out rounded-full text-[#b8b8b8] border-[#b8b8b8] hover:bg-[#ececec] "
@@ -90,7 +110,7 @@ export default function Footer() {
         <span className="">
           Brought to you by{" "}
           <a
-            href="https://www.linkedin.com/in/rafael-oliveira-7a6b7b1b7/"
+            href="https://williamoliveirasilva.online/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#aaa] underline leading-6"

@@ -95,6 +95,14 @@ interface ColorTheme {
     light: string;
     dark: string;
   };
+  sideBarExample: {
+    light: string;
+    dark: string;
+  };
+  newBadge: {
+    light: string;
+    dark: string;
+  };
 }
 
 interface SidebarProps {
@@ -123,6 +131,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
     sideButtonBackground,
     sideButtonBackgroundHover,
     sideButtonTextColor,
+    sideBarExample,
+    newBadge,
   } = colorTheme[variant] as ColorTheme;
 
   // console.log("oie", backgroundGradient.firstColor[theme]);
@@ -169,7 +179,12 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
 
     if (badge.type === "number") {
       return (
-        <span className="ml-auto bg-blue-500 text-white text-xs font-medium px-2 py-0.5 rounded-full">
+        <span
+          style={{
+            background: `${sideBarExample[theme]}`,
+          }}
+          className="ml-auto transition-all duration-300 ease-in-out text-white text-xs font-medium px-2 py-0.5 rounded-full"
+        >
           {badge.content}
         </span>
       );
@@ -177,7 +192,12 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
 
     if (badge.type === "text") {
       return (
-        <span className="ml-auto bg-green-500 text-white text-xs font-medium px-2 py-0.5 rounded-full">
+        <span
+          style={{
+            background: `${newBadge[theme]}`,
+          }}
+          className={`    ml-auto transition-all duration-300 ease-in-out text-white text-xs font-medium px-2 py-0.5 rounded-full`}
+        >
           {badge.content}
         </span>
       );
@@ -298,16 +318,29 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
                 } ${selectedMenuItem === index ? "" : "opacity-50"}`}
                 onClick={() => handleMenuItemClick(index)}
               >
-                <Link
-                  href={``}
-                  className="flex items-center justify-between w-full"
-                >
+                <div className="flex items-center justify-between w-full">
                   <div className="flex items-center">
                     <item.icon className="h-5 w-5" />
-                    {isOpen && <span className="ml-3">{item.label}</span>}
+                    <span
+                      className={` ${
+                        isOpen ? " opacity-100 w-[71px]" : " opacity-0 w-0"
+                      } ml-3 transition-all duration-300 ease-in-out overflow-hidden`}
+                    >
+                      {item.label}
+                    </span>
                   </div>
-                  {isOpen && renderBadge(item.badge)}
-                </Link>
+                  <span
+                    className={`
+                    
+                    ${
+                      isOpen
+                        ? "opacity-100 w-auto"
+                        : "opacity-0 w-0 overflow-hidden"
+                    } transition-all duration-300 ease-in-out `}
+                  >
+                    {renderBadge(item.badge)}
+                  </span>
+                </div>
 
                 <div
                   style={{
@@ -320,8 +353,9 @@ const Sidebar: React.FC<SidebarProps> = ({ children, variant, theme, id }) => {
                       : selectedMenuItem === index
                       ? "114%"
                       : "140%",
+                    background: sideBarExample[theme],
                   }}
-                  className="absolute top-1/2 transition-all ease-in-out duration-300 bg-blue-500 rounded-tr-full rounded-br-full -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 transition-all ease-in-out duration-300  rounded-tr-full rounded-br-full -translate-x-1/2 -translate-y-1/2"
                 />
               </div>
             ))}

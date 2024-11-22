@@ -7,9 +7,47 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import { Menu, X } from "lucide-react";
 
-export default function MainTopBar({ showDesktopNav }) {
+export default function MainTopBar({ showDesktopNav, onLinkClick }) {
   console.log("MainTopBar -> showDesktopNav", showDesktopNav);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [stars, setStars] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [, setError] = useState(null);
+
+  const links = [
+    { id: "docs", label: "Docs" },
+    { id: "example", label: "Example" },
+  ];
+
+  const openLinkInNewTab = (url) => {
+    if (url) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    } else {
+      console.error("URL inválida ou não fornecida.");
+    }
+  };
+
+  useEffect(() => {
+    const fetchStars = async () => {
+      try {
+        const response = await fetch(
+          `https://api.github.com/repos/WilliamSilvaOliveiraa/nalu-table-component`
+        );
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar dados: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setStars(data.stargazers_count); // Número de estrelas
+        setLoading(false);
+      } catch (err) {
+        // tslint:disable-next-line: no-console
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchStars();
+  });
 
   // useEffect(() => {
   //   let prevScrollPos = window.pageYOffset;
@@ -45,7 +83,7 @@ export default function MainTopBar({ showDesktopNav }) {
         <div className="container mx-auto flex items-center justify-between py-4">
           <div className="flex items-center lg:flex-1">
             {/* Left side: Logo */}
-            <div className="flex items-center mr-8 lg:mr-16 gap-2">
+            <div className="select-none flex items-center mr-8 lg:mr-16 gap-2">
               <Image src={NaluDark} alt="Logo" width={26} layout="intrinsic" />
               <span className="text-lg font-medium">Nalu table</span>
             </div>
@@ -53,22 +91,22 @@ export default function MainTopBar({ showDesktopNav }) {
             {/* Navigation - Hidden on mobile and controlled by showDesktopNav */}
 
             <nav className="hidden lg:flex space-x-12 text-sm items-center mr-16">
+              {links.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`} // Fallback para navegadores sem JS
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onLinkClick(link.id);
+                  }}
+                  className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
-                href="#"
-                onClick={handleLinkClick}
-                className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
-              >
-                Example
-              </a>
-              <a
-                href="#"
-                onClick={handleLinkClick}
-                className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
-              >
-                Docs
-              </a>
-              <a
-                href="#"
+                href="https://williamoliveirasilva.online/"
+                target="_blank"
                 onClick={handleLinkClick}
                 className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
               >
@@ -80,7 +118,7 @@ export default function MainTopBar({ showDesktopNav }) {
 
             <div className="hidden lg:flex items-center space-x-2 relative">
               <a
-                href="https://github.com/your-repo"
+                href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleLinkClick}
@@ -90,16 +128,18 @@ export default function MainTopBar({ showDesktopNav }) {
                 <div className="flex items-center justify-center gap-2">
                   <GitHubIcon className="text-lg" />
                   <span className="text-[14px] font-medium">
-                    Star on GitHub
+                    Stars on GitHub
                   </span>
                 </div>
 
                 <div className="flex items-center justify-center">
                   <StarRoundedIcon className="text-lg text-[#6b7280] group-hover:text-[#fcc032] transition-all duration-500 ease-in-out" />
-                  <NumberTicker
-                    value={123}
-                    className="text-white -tracking-wider font-medium"
-                  />
+                  {!loading && (
+                    <NumberTicker
+                      value={stars}
+                      className="text-white -tracking-wider font-medium"
+                    />
+                  )}
                 </div>
               </a>
             </div>
@@ -108,7 +148,11 @@ export default function MainTopBar({ showDesktopNav }) {
           {/* Get Started button - Hidden on mobile and controlled by showDesktopNav */}
 
           <div className="hidden lg:block">
-            <ShimmerButton>
+            <ShimmerButton
+              onClick={() =>
+                openLinkInNewTab("https://www.npmjs.com/package/nalu-table")
+              }
+            >
               <p className="text-sm font-medium">Get Started</p>
             </ShimmerButton>
           </div>
@@ -132,22 +176,24 @@ export default function MainTopBar({ showDesktopNav }) {
         <div className="lg:hidden fixed inset-0 z-[99] bg-white pt-20">
           <div className="container mx-auto px-4 py-6 space-y-8">
             <nav className="flex flex-col space-y-6">
+              {links.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`} // Fallback para navegadores sem JS
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onLinkClick(link.id);
+                    handleLinkClick();
+                  }}
+                  className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold text-lg"
+                >
+                  {link.label}
+                </a>
+              ))}
+
               <a
-                href="#"
-                onClick={handleLinkClick}
-                className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold text-lg"
-              >
-                Example
-              </a>
-              <a
-                href="#"
-                onClick={handleLinkClick}
-                className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold text-lg"
-              >
-                Docs
-              </a>
-              <a
-                href="#"
+                href="https://williamoliveirasilva.online/"
+                target="_blank"
                 onClick={handleLinkClick}
                 className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold text-lg"
               >
@@ -157,7 +203,7 @@ export default function MainTopBar({ showDesktopNav }) {
 
             <div className="space-y-6">
               <a
-                href="https://github.com/your-repo"
+                href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleLinkClick}
@@ -167,10 +213,12 @@ export default function MainTopBar({ showDesktopNav }) {
                 <span className="text-[14px] font-medium">Star on GitHub</span>
                 <div className="flex items-center">
                   <StarRoundedIcon className="text-lg text-[#fcc032]" />
-                  <NumberTicker
-                    value={123}
-                    className="text-white -tracking-wider font-medium"
-                  />
+                  {!loading && (
+                    <NumberTicker
+                      value={stars}
+                      className="text-white -tracking-wider font-medium"
+                    />
+                  )}
                 </div>
               </a>
 

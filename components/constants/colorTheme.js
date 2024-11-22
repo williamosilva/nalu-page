@@ -26,7 +26,7 @@ const colorThemes = {
     },
     mainText: {
       light: "#302e30",
-      dark: "#ffffff",
+      dark: "#e3e3e3",
     },
     imgBackground: {
       light: "#ffffff",
@@ -102,12 +102,22 @@ const colorThemes = {
       light: "#e5e5e5",
       dark: "#474747",
     },
+
+    sideBarExample: {
+      light: "#3b82f6",
+      dark: "#000bb0",
+    },
+
+    newBadge: {
+      light: "#22c55e",
+      dark: "#008531",
+    },
   },
   crimson: {
     backgroundGradient: {
       firstColor: {
         light: "#ffffff",
-        dark: "#121011",
+        dark: "#19181b",
       },
       finalColor: {
         light: "#FFFCFC",
@@ -120,7 +130,7 @@ const colorThemes = {
     },
     mainText: {
       light: "#302e30",
-      dark: "#ffffff",
+      dark: "#e3e3e3",
     },
 
     mainTextItems: {
@@ -198,6 +208,14 @@ const colorThemes = {
     dockBackgroundColor: {
       light: "#e5e5e5",
       dark: "#474747",
+    },
+    sideBarExample: {
+      light: "#3b82f6",
+      dark: "#000bb0",
+    },
+    newBadge: {
+      light: "#22c55e",
+      dark: "#008531",
     },
   },
 };

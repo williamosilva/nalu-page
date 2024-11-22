@@ -7,6 +7,7 @@ import { MiddleSection } from "@/components/pages/MiddleSection";
 import InstallationSection from "@/components/pages/InstallationSection";
 import QuickStart from "@/components/pages/QuickStart";
 import GridPattern from "@/components/ui/animated-grid-pattern";
+import Toast from "@/components/ui/Toast";
 import Props from "@/components/pages/Props";
 import Footer from "@/components/ui/Footer";
 import BasicExamples from "@/components/pages/BasicExamples";
@@ -33,7 +34,11 @@ export default function Main() {
   const [isPlusButton, setIsPlusButton] = useState(false);
   const [isHeaderButton, setIsHeaderButton] = useState(false);
   const [isTabButton, setIsTabButton] = useState(false);
+  const [counter, setCounter] = useState(0);
 
+  const handleShowToast = () => {
+    setCounter((prev) => prev + 1);
+  };
   function toggleTheme() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
@@ -42,10 +47,20 @@ export default function Main() {
     setStyle((prev) => (prev === "sapphire" ? "crimson" : "sapphire"));
   }
 
+  const handleScrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <>
       <div className="relative w-full">
-        <MainTopBar showDesktopNav={isNavbarHidden} />
+        <MainTopBar
+          showDesktopNav={isNavbarHidden}
+          onLinkClick={handleScrollToSection}
+        />
         <div className="relative container  mx-auto   mb-20 flex flex-col justify-center items-center ">
           <div className="flex flex-col w-full relative z-[2] items-center justify-center">
             {/* Esconde a navbar quando isNavbarHidden for true */}
@@ -65,16 +80,20 @@ export default function Main() {
                 colors={{ first: "#c580ff", second: "#8c00ff" }}
                 sparklesCount={5}
               />
-              <Example
-                variant={style}
-                theme={theme}
-                id="trigger-section"
-                tabButton={isTabButton}
-                plusButton={isPlusButton}
-                header={isHeaderButton}
-              />
+              <span id="example">
+                <Example
+                  variant={style}
+                  theme={theme}
+                  tabButton={isTabButton}
+                  plusButton={isPlusButton}
+                  header={isHeaderButton}
+                />
+              </span>
             </div>
-            <div className="min-h-auto flex flex-col gap-6 2xl:w-[50%]  w-[80%] items-center">
+            <div
+              className="min-h-auto flex flex-col gap-6 2xl:w-[50%]  w-[80%] items-center"
+              id="docs"
+            >
               <h1
                 className={cn(
                   "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
@@ -141,8 +160,14 @@ export default function Main() {
           </div>
         </div>
         <GetStartFooter />
-        <Footer />
+        <Footer onLinkClick={handleScrollToSection} />
       </div>
+      <Toast
+        message="Operação realizada com sucesso!"
+        type="success"
+        counter={counter}
+        duration={1000}
+      />
       <DefaultDock
         isShow={isNavbarHidden}
         plusButton={() => {
@@ -150,6 +175,7 @@ export default function Main() {
         }}
         tabButton={() => {
           setIsTabButton((prev) => !prev);
+          handleShowToast();
         }}
         themeToggle={() => {
           toggleTheme();
