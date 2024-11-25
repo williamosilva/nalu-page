@@ -67,11 +67,8 @@ export default function Example({
 
   const handleShowToastPlus = () => {
     setCounter((prev) => prev + 1);
-    setToastMessage("Plus button clicked");
-  };
 
-  const saveTabs = (tabs: any) => {
-    console.log("aaaaa", tabs);
+    setToastMessage("Plus button clicked");
   };
 
   return (
@@ -107,7 +104,7 @@ export default function Example({
                 console.log("Tab selecionado:", tab);
                 onTabChange(tab); // Atualiza o estado no componente pai
               }}
-              plusButton={() => handleShowToastPlus()}
+              plusButton={plusButton ? () => handleShowToastPlus() : null}
               addItemFunction={(id) => handleShowToast(id, "add")}
               editItemFunction={(id) => handleShowToast(id, "edit")}
               viewItemFunction={(id) => handleShowToast(id, "view")}

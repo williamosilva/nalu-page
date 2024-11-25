@@ -5,6 +5,7 @@ import { Brush } from "lucide-react";
 import { SquarePlus } from "lucide-react";
 import { Languages } from "lucide-react";
 import { ListStart } from "lucide-react";
+import { Circle } from "lucide-react";
 import { TableCellsMerge } from "lucide-react";
 import { IconButton, Tooltip } from "@mui/material";
 import colorTheme from "@/components/constants/colorTheme";
@@ -18,6 +19,7 @@ export default function DefaultDock({
   headerButton,
   plusButton,
   languageButton,
+  visibilityButton,
   variant = "sapphire",
   theme = "light",
 }) {
@@ -27,6 +29,7 @@ export default function DefaultDock({
   const [isToggleAddButton, setIsToggleAddButton] = useState(true);
   const [isToggleHeader, setIsToggleHeader] = useState(true);
   const [isToggleTab, setIsToggleTab] = useState(true);
+  const [isToggleVisibility, setIsToggleVisibility] = useState(true);
   const { dockIconColor, dockBackgroundColor } = colorTheme[variant];
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
@@ -34,6 +37,7 @@ export default function DefaultDock({
   const [isHovered4, setIsHovered4] = useState(false);
   const [isHovered5, setIsHovered5] = useState(false);
   const [isHovered6, setIsHovered6] = useState(false);
+  const [isHovered7, setIsHovered7] = useState(false);
 
   function toggleAddButton() {
     setIsToggleAddButton(!isToggleAddButton);
@@ -63,6 +67,11 @@ export default function DefaultDock({
   function toggleTab() {
     setIsToggleTab(!isToggleTab);
     tabButton();
+  }
+
+  function toggleVisibility() {
+    setIsToggleVisibility(!isToggleVisibility);
+    visibilityButton();
   }
 
   return (
@@ -218,6 +227,24 @@ export default function DefaultDock({
               onClick={toggleTab}
             >
               <TableCellsMerge size={18} />
+            </IconButton>
+          </Tooltip>
+        </DockIcon>
+        <DockIcon>
+          <Tooltip title={`Toggle empty state`} placement="top">
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered7(true)}
+              onMouseLeave={() => setIsHovered7(false)}
+              style={{
+                background: isHovered7
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+              onClick={toggleVisibility}
+            >
+              <Circle size={18} />
             </IconButton>
           </Tooltip>
         </DockIcon>

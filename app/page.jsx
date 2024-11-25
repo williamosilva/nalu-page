@@ -63,12 +63,14 @@ export default function Main() {
   const [theme, setTheme] = useState("light");
   const [style, setStyle] = useState("sapphire");
   const [language, setLanguage] = useState("en");
-  const [isPlusButton, setIsPlusButton] = useState(false);
-  const [isHeaderButton, setIsHeaderButton] = useState(false);
+  const [isPlusButton, setIsPlusButton] = useState(true);
+  const [isHeaderButton, setIsHeaderButton] = useState(true);
   const [isTabButton, setIsTabButton] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
   const [tabs, setTabs] = useState([
-    { title: "Activated", quantity: 2, checked: true, special: true },
-    { title: "Archived", quantity: 1, checked: true, special: false },
+    { title: "Activated", quantity: 6, checked: true, special: true },
+    { title: "Archived", quantity: 8, checked: true, special: false },
   ]);
   const [activeTab, setActiveTab] = useState(tabs[0]?.title || "");
 
@@ -112,8 +114,9 @@ export default function Main() {
           activeTab === "Activated" ? ItemsForActiveTab : ItemsForArchivedTab,
       },
     },
-    isTabButton,
-    activeTab
+    isVisible,
+    activeTab,
+    isTabButton
   );
 
   const handleToggleLanguage = () => {
@@ -251,6 +254,9 @@ export default function Main() {
 
       <DefaultDock
         isShow={isNavbarHidden}
+        visibilityButton={() => {
+          setIsVisible((prev) => !prev);
+        }}
         plusButton={() => {
           setIsPlusButton((prev) => !prev);
         }}
