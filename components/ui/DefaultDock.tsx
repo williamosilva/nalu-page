@@ -3,11 +3,11 @@ import { Moon } from "lucide-react";
 import { Sun } from "lucide-react";
 import { Brush } from "lucide-react";
 import { SquarePlus } from "lucide-react";
+import { Languages } from "lucide-react";
 import { ListStart } from "lucide-react";
 import { TableCellsMerge } from "lucide-react";
+import { IconButton, Tooltip } from "@mui/material";
 import colorTheme from "@/components/constants/colorTheme";
-
-import { IconButton } from "@mui/material";
 import { useState } from "react";
 
 export default function DefaultDock({
@@ -17,20 +17,52 @@ export default function DefaultDock({
   tabButton,
   headerButton,
   plusButton,
+  languageButton,
   variant = "sapphire",
   theme = "light",
 }) {
   const [isToggleTheme, setIsToggleTheme] = useState("light");
+  const [isToggleStyle, setIsToggleStyle] = useState("sapphire");
+  const [isToggleLanguage, setIsToggleLanguage] = useState("en");
+  const [isToggleAddButton, setIsToggleAddButton] = useState(true);
+  const [isToggleHeader, setIsToggleHeader] = useState(true);
+  const [isToggleTab, setIsToggleTab] = useState(true);
   const { dockIconColor, dockBackgroundColor } = colorTheme[variant];
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
   const [isHovered3, setIsHovered3] = useState(false);
   const [isHovered4, setIsHovered4] = useState(false);
   const [isHovered5, setIsHovered5] = useState(false);
+  const [isHovered6, setIsHovered6] = useState(false);
+
+  function toggleAddButton() {
+    setIsToggleAddButton(!isToggleAddButton);
+    plusButton();
+  }
+
+  function toggleHeader() {
+    setIsToggleHeader(!isToggleHeader);
+    headerButton();
+  }
 
   function toggleTheme() {
     setIsToggleTheme(isToggleTheme === "light" ? "dark" : "light");
     themeToggle();
+  }
+
+  function toggleLanguage() {
+    setIsToggleLanguage(isToggleLanguage === "en" ? "pt-br" : "en");
+    languageButton();
+  }
+
+  function toggleStyle() {
+    setIsToggleStyle(isToggleStyle === "sapphire" ? "crimson" : "sapphire");
+    styleToggle();
+  }
+
+  function toggleTab() {
+    setIsToggleTab(!isToggleTab);
+    tabButton();
   }
 
   return (
@@ -46,104 +78,150 @@ export default function DefaultDock({
         className="gap-4"
       >
         <DockIcon>
-          <IconButton
-            size="large"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={toggleTheme}
-            style={{
-              background: isHovered
-                ? dockBackgroundColor[theme]
-                : "transparent",
-              color: dockIconColor[theme],
-            }}
+          <Tooltip
+            title={`Change theme to ${
+              isToggleTheme === "dark" ? "light" : "dark  "
+            }`}
+            placement="top"
           >
-            {isToggleTheme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-          </IconButton>
-        </DockIcon>
-        <DockIcon>
-          <IconButton
-            size="large"
-            onMouseEnter={() => setIsHovered2(true)}
-            onMouseLeave={() => setIsHovered2(false)}
-            className="transition-all duration-300 ease-in-out"
-            style={{
-              background: isHovered2
-                ? dockBackgroundColor[theme]
-                : "transparent",
-              color: dockIconColor[theme],
-            }}
-            onClick={() => {
-              styleToggle();
-            }}
-          >
-            <Brush size={18} />
-          </IconButton>
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onClick={toggleTheme}
+              style={{
+                background: isHovered
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+            >
+              {isToggleTheme === "light" ? (
+                <Moon size={18} />
+              ) : (
+                <Sun size={18} />
+              )}
+            </IconButton>
+          </Tooltip>
         </DockIcon>
 
         <DockIcon>
-          <IconButton
-            size="large"
-            onMouseEnter={() => setIsHovered3(true)}
-            onMouseLeave={() => setIsHovered3(false)}
-            style={{
-              background: isHovered3
-                ? dockBackgroundColor[theme]
-                : "transparent",
-              color: dockIconColor[theme],
-            }}
-            onClick={() => {
-              plusButton();
-            }}
+          <Tooltip
+            title={`Change style to ${
+              isToggleStyle === "sapphire" ? "crimson" : "sapphire"
+            }`}
+            placement="top"
           >
-            <SquarePlus size={18} />
-          </IconButton>
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered2(true)}
+              onMouseLeave={() => setIsHovered2(false)}
+              className="transition-all duration-300 ease-in-out"
+              style={{
+                background: isHovered2
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+              onClick={toggleStyle}
+            >
+              <Brush size={18} />
+            </IconButton>
+          </Tooltip>
         </DockIcon>
+
         <DockIcon>
-          <IconButton
-            size="large"
-            onMouseEnter={() => setIsHovered4(true)}
-            onMouseLeave={() => setIsHovered4(false)}
-            style={{
-              background: isHovered4
-                ? dockBackgroundColor[theme]
-                : "transparent",
-              color: dockIconColor[theme],
-            }}
-            onClick={() => {
-              headerButton();
-            }}
+          <Tooltip
+            title={`Change language to ${
+              isToggleLanguage === "en" ? "pt-br" : "en"
+            }`}
+            placement="top"
           >
-            <ListStart size={18} />
-          </IconButton>
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered6(true)}
+              onMouseLeave={() => setIsHovered6(false)}
+              style={{
+                background: isHovered6
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+              onClick={toggleLanguage}
+            >
+              <Languages size={18} />
+            </IconButton>
+          </Tooltip>
         </DockIcon>
+
         <DockIcon>
-          <IconButton
-            size="large"
-            onMouseEnter={() => setIsHovered5(true)}
-            onMouseLeave={() => setIsHovered5(false)}
-            style={{
-              background: isHovered5
-                ? dockBackgroundColor[theme]
-                : "transparent",
-              color: dockIconColor[theme],
-            }}
-            onClick={() => {
-              tabButton();
-            }}
+          <Tooltip
+            title={`${
+              isToggleAddButton === true ? "Remove" : "Add"
+            } plus button `}
+            placement="top"
           >
-            <TableCellsMerge size={18} />
-          </IconButton>
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered3(true)}
+              onMouseLeave={() => setIsHovered3(false)}
+              style={{
+                background: isHovered3
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+              onClick={toggleAddButton}
+            >
+              <SquarePlus size={18} />
+            </IconButton>
+          </Tooltip>
+        </DockIcon>
+
+        <DockIcon>
+          <Tooltip
+            title={`${isToggleHeader === true ? "Remove" : "Add"} header `}
+            placement="top"
+          >
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered4(true)}
+              onMouseLeave={() => setIsHovered4(false)}
+              style={{
+                background: isHovered4
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+              onClick={toggleHeader}
+            >
+              <ListStart size={18} />
+            </IconButton>
+          </Tooltip>
+        </DockIcon>
+
+        <DockIcon>
+          <Tooltip
+            title={`${isToggleTab === true ? "Remove" : "Add"} tabs `}
+            placement="top"
+          >
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered5(true)}
+              onMouseLeave={() => setIsHovered5(false)}
+              style={{
+                background: isHovered5
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+              onClick={toggleTab}
+            >
+              <TableCellsMerge size={18} />
+            </IconButton>
+          </Tooltip>
         </DockIcon>
       </Dock>
     </div>
   );
 }
-
-// function IconButton({ children }) {
-//   return (
-//     <div className="flex items-center justify-center w-12 h-12 bg-transparent rounded-full hover:bg-neutral-100 transition-all duration-300 ease-in-out ">
-//       {children}
-//     </div>
-//   );
-// }

@@ -2,7 +2,7 @@ const colorThemes = {
   sapphire: {
     backgroundGradient: {
       firstColor: {
-        light: "#ffffff",
+        light: "#fafafa",
         dark: "#19181b",
       },
       finalColor: {
@@ -116,7 +116,7 @@ const colorThemes = {
   crimson: {
     backgroundGradient: {
       firstColor: {
-        light: "#ffffff",
+        light: "#fafafa",
         dark: "#19181b",
       },
       finalColor: {

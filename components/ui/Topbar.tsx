@@ -85,7 +85,7 @@ const Topbar: React.FC<TopbarProps> = ({
         background: backgroundGradient.firstColor[theme],
         borderColor: sideBorder[theme],
       }}
-      className="w-full h-16 border-b flex items-center justify-between px-4 top-0 left-0 right-0 transition-all 
+      className="w-full py-[10px] relative border-b flex items-center justify-between px-4 top-0 left-0 right-0 transition-all 
       duration-300 ease-in-out"
     >
       {/* Middle Section - Search */}

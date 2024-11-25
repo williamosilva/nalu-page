@@ -20,6 +20,7 @@ import useNavbarVisibility from "@/hooks/useNavbarVisibility";
 
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { getTableDataWithTabs, mockTableData } from "@/components/data/Data";
 
 const poppinsFont = Poppins({
   weight: ["400", "700"],
@@ -31,14 +32,24 @@ export default function Main() {
   const isNavbarHidden = useNavbarVisibility(1900, 2800);
   const [theme, setTheme] = useState("light");
   const [style, setStyle] = useState("sapphire");
+  const [language, setLanguage] = useState("en");
+  const [activeTab, setActiveTab] = useState(true);
+  const [header, setHeader] = useState(true);
   const [isPlusButton, setIsPlusButton] = useState(false);
   const [isHeaderButton, setIsHeaderButton] = useState(false);
-  const [isTabButton, setIsTabButton] = useState(false);
+
   const [counter, setCounter] = useState(0);
+  const [isTabButton, setIsTabButton] = useState(false);
+  const data = getTableDataWithTabs(mockTableData, isTabButton);
 
   const handleShowToast = () => {
     setCounter((prev) => prev + 1);
   };
+
+  const handleToggleLanguage = () => {
+    setLanguage((prev) => (prev === "en" ? "pt-br" : "en"));
+  };
+
   function toggleTheme() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
@@ -84,9 +95,11 @@ export default function Main() {
                 <Example
                   variant={style}
                   theme={theme}
+                  language={language}
                   tabButton={isTabButton}
                   plusButton={isPlusButton}
                   header={isHeaderButton}
+                  data={data}
                 />
               </span>
             </div>
@@ -185,6 +198,9 @@ export default function Main() {
         }}
         headerButton={() => {
           setIsHeaderButton((prev) => !prev);
+        }}
+        languageButton={() => {
+          handleToggleLanguage();
         }}
         theme={theme}
         variant={style}

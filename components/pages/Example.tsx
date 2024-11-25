@@ -10,9 +10,11 @@ interface ExampleProps {
   variant?: "sapphire" | "crimson";
   theme?: "light" | "dark";
   id?: string;
-  header?: React.ReactNode;
+  header?: boolean;
   tabButton?: React.ReactNode;
   plusButton?: React.ReactNode;
+  language: string;
+  data: any;
 }
 
 export default function Example({
@@ -22,6 +24,8 @@ export default function Example({
   header,
   tabButton,
   plusButton,
+  language,
+  data,
 }: ExampleProps) {
   const { backgroundGradient } = colorTheme[variant];
 
@@ -34,14 +38,23 @@ export default function Example({
         }}
       >
         <Topbar variant={variant} theme={theme} />
-        <div className="px-8 pb-0 pt-16">
-          <NaluTable
-            itemsPerPage={10}
-            totalItems={30}
-            language="en"
-            variant={variant}
-            theme={theme}
-          />
+        <div className="px-8 pt-4 pb-6 h-[1000px] flex flex-col overflow-y-auto">
+          <div className="h-auto mt-11 ">
+            <NaluTable
+              itemsPerPage={10}
+              totalItems={30}
+              language={language}
+              variant={variant}
+              theme={theme}
+              tableData={data}
+              handlePageChange={(page) => console.log(page)}
+              size="small"
+              header={header}
+              hasTabs={true}
+              loading={false}
+              plusButton={plusButton}
+            />
+          </div>
         </div>
       </div>
     </Sidebar>
