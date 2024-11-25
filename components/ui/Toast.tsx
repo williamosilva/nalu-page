@@ -1,35 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-type ToastType = "success" | "error" | "warning";
-
-interface ToastItemProps {
+interface ToastProps {
   message: string;
-  type: ToastType;
-  duration: number;
-  index: number;
-  onRemove: (id: number) => void;
-  id: number;
+  duration?: number;
+  counter?: number;
 }
 
 interface Toast {
   id: number;
   message: string;
-  type: ToastType;
   duration: number;
 }
 
-interface ToastProps {
-  message: string;
-  type?: ToastType;
-  duration?: number;
-  counter?: number;
+interface ToastItemProps extends Toast {
+  index: number;
+  onRemove: (id: number) => void;
+  id: number;
 }
 
 // Componente individual do Toast
 const ToastItem: React.FC<ToastItemProps> = ({
   message,
-  type,
   duration,
   index,
   onRemove,
@@ -37,12 +29,6 @@ const ToastItem: React.FC<ToastItemProps> = ({
 }) => {
   const [show, setShow] = useState(false);
   const [shouldRender, setShouldRender] = useState(true);
-
-  const color: Record<ToastType, string> = {
-    success: "bg-green-500",
-    error: "bg-red-500",
-    warning: "bg-yellow-500",
-  };
 
   useEffect(() => {
     // Trigger enter animation
@@ -66,13 +52,13 @@ const ToastItem: React.FC<ToastItemProps> = ({
   return (
     <div
       className={cn(
-        "fixed p-4 rounded-md text-white z-50",
+        "fixed p-4 rounded-md text-neutral-700 z-50 w-[290px] text-sm  font-normal",
         "transform transition-all duration-300 ease-in-out",
         // Initial state: start from the right and invisible
         !show && "translate-x-full opacity-0 scale-95",
         // Final state: centered and visible
         show && "translate-x-0 opacity-100 scale-100",
-        color[type]
+        "bg-white shadow-md border overflow-hidden "
       )}
       style={{
         bottom: `${index * 4 + 1}rem`,
@@ -80,6 +66,9 @@ const ToastItem: React.FC<ToastItemProps> = ({
         transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
+      <span className="h-full bg-[#9F30E1] w-1 left-0 top-1/2 -translate-y-[50%] text-transparent absolute">
+        .
+      </span>
       {message}
     </div>
   );
@@ -88,7 +77,6 @@ const ToastItem: React.FC<ToastItemProps> = ({
 // Componente principal que gerencia os Toasts
 const Toast: React.FC<ToastProps> = ({
   message,
-  type = "success",
   duration = 3000,
   counter = 0,
 }) => {
@@ -96,9 +84,9 @@ const Toast: React.FC<ToastProps> = ({
 
   useEffect(() => {
     if (counter > 0) {
-      setToasts((prev) => [...prev, { id: counter, message, type, duration }]);
+      setToasts((prev) => [...prev, { id: counter, message, duration }]);
     }
-  }, [counter, message, type, duration]);
+  }, [counter, message, duration]);
 
   const removeToast = (id: number): void => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
@@ -112,7 +100,6 @@ const Toast: React.FC<ToastProps> = ({
           id={toast.id}
           index={index}
           message={toast.message}
-          type={toast.type}
           duration={toast.duration}
           onRemove={removeToast}
         />

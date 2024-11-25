@@ -1,10 +1,11 @@
 "use client";
-
 import NaluTable from "nalu-table";
 import "nalu-table/dist/style.css";
 import Sidebar from "../../components/ui/Sidebar";
 import Topbar from "../../components/ui/Topbar";
 import colorTheme from "@/components/constants/colorTheme";
+import Toast from "../ui/Toast";
+import { useState } from "react";
 
 interface ExampleProps {
   variant?: "sapphire" | "crimson";
@@ -14,6 +15,7 @@ interface ExampleProps {
   tabButton?: React.ReactNode;
   plusButton?: React.ReactNode;
   language: string;
+  activeTab: string;
   data: any;
 }
 
@@ -26,8 +28,40 @@ export default function Example({
   plusButton,
   language,
   data,
+  activeTab,
 }: ExampleProps) {
   const { backgroundGradient } = colorTheme[variant];
+  const [counter, setCounter] = useState(0);
+  const [toastMessage, setToastMessage] = useState<string>("");
+
+  const handleShowToast = (id: string, actionType: string) => {
+    setCounter((prev) => prev + 1);
+    setToastMessage(`${getActionMessage(actionType)} for ID: ${id}`);
+  };
+
+  const getActionMessage = (actionType: string) => {
+    const actionMessages = {
+      add: "Add function clicked",
+      edit: "Edit item function clicked",
+      view: "View item function clicked",
+      remove: "Remove item function clicked",
+      plusButton: "Plus button clicked",
+    };
+
+    return (
+      actionMessages[actionType as keyof typeof actionMessages] ||
+      "Operação realizada"
+    );
+  };
+
+  const handleShowToastPlus = () => {
+    setCounter((prev) => prev + 1);
+    setToastMessage("Plus button clicked");
+  };
+
+  const saveTabs = (tabs: any) => {
+    console.log("aaaaa", tabs);
+  };
 
   return (
     <Sidebar variant={variant} theme={theme} id={id}>
@@ -37,6 +71,8 @@ export default function Example({
           background: `${backgroundGradient.firstColor[theme]}`,
         }}
       >
+        {" "}
+        <button onClick={() => saveTabs(tabs)}>oiii</button>
         <Topbar variant={variant} theme={theme} />
         <div className="px-8 pt-4 pb-6 h-[1000px] flex flex-col overflow-y-auto">
           <div className="h-auto mt-11 ">
@@ -51,12 +87,20 @@ export default function Example({
               size="small"
               header={header}
               hasTabs={true}
+              activeTab={activeTab}
               loading={false}
-              plusButton={plusButton}
+              handleSaveTabs={(tabs) => saveTabs(tabs)}
+              handleTabChange={(tab) => console.log(tab)}
+              plusButton={() => handleShowToastPlus()}
+              addItemFunction={(id) => handleShowToast(id, "add")}
+              editItemFunction={(id) => handleShowToast(id, "edit")}
+              viewItemFunction={(id) => handleShowToast(id, "view")}
+              removeItemFunction={(id) => handleShowToast(id, "remove")}
             />
           </div>
         </div>
       </div>
+      <Toast message={toastMessage} counter={counter} duration={2000} />
     </Sidebar>
   );
 }

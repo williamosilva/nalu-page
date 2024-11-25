@@ -4,6 +4,7 @@ interface Tab {
   title: string;
   quantity: number;
   checked: boolean;
+  special: boolean;
 }
 
 interface Column {
@@ -26,10 +27,9 @@ interface TableItem {
   id: number;
   code: string;
   name: string;
-  category: string;
   price: number;
   stock: number;
-  status: string;
+
   variations?: Variation[];
   [key: string]: any;
 }

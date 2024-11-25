@@ -33,18 +33,11 @@ export default function Main() {
   const [theme, setTheme] = useState("light");
   const [style, setStyle] = useState("sapphire");
   const [language, setLanguage] = useState("en");
-  const [activeTab, setActiveTab] = useState(true);
-  const [header, setHeader] = useState(true);
   const [isPlusButton, setIsPlusButton] = useState(false);
   const [isHeaderButton, setIsHeaderButton] = useState(false);
-
-  const [counter, setCounter] = useState(0);
-  const [isTabButton, setIsTabButton] = useState(false);
-  const data = getTableDataWithTabs(mockTableData, isTabButton);
-
-  const handleShowToast = () => {
-    setCounter((prev) => prev + 1);
-  };
+  const [isTabButton, setIsTabButton] = useState(true);
+  const [activeTab, setActiveTab] = useState(mockTableData.tabs[0].title);
+  const data = getTableDataWithTabs(mockTableData, isTabButton, activeTab);
 
   const handleToggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "pt-br" : "en"));
@@ -98,6 +91,7 @@ export default function Main() {
                   language={language}
                   tabButton={isTabButton}
                   plusButton={isPlusButton}
+                  activeTab={activeTab}
                   header={isHeaderButton}
                   data={data}
                 />
@@ -175,12 +169,7 @@ export default function Main() {
         <GetStartFooter />
         <Footer onLinkClick={handleScrollToSection} />
       </div>
-      <Toast
-        message="Operação realizada com sucesso!"
-        type="success"
-        counter={counter}
-        duration={1000}
-      />
+
       <DefaultDock
         isShow={isNavbarHidden}
         plusButton={() => {
