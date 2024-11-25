@@ -1,5 +1,6 @@
 import { TableData } from "./TypeData";
 
+// Itens para as abas de "Activated" e "Archived"
 const ItemsForActiveTab = [
   {
     id: 2,
@@ -29,41 +30,18 @@ const ItemsForArchivedTab = [
   },
 ];
 
-export const mockTableData: TableData = {
-  tabs: [
-    { title: "Activated", quantity: 2, checked: true, special: true },
-    { title: "Archived", quantity: 1, checked: true, special: false },
-  ],
-  tableInfo: {
-    columns: [
-      { header: "Code", ref: "code", alignment: "center", ordering: true },
-      { header: "Product", ref: "name", alignment: "left", ordering: true },
-      { header: "Price", ref: "price", alignment: "center", ordering: true },
-      { header: "Stock", ref: "stock", alignment: "center", ordering: true },
-    ],
-    items: ItemsForActiveTab,
-  },
-};
-
-/**
- * Function that controls the display of tabs and selected items in the table
- * @param data Table data
- * @param showTabs Boolean that controls whether tabs should be displayed
- * @param activeTab Title of the active tab
- * @returns TableData with the updated items and tabs
- */
+// Função que ajusta a exibição dos dados conforme a aba ativa
 export const getTableDataWithTabs = (
   data: TableData,
   showTabs: boolean,
   activeTab: string
 ): TableData => {
   if (!showTabs) {
-    // Retorna uma cópia do objeto sem as tabs
     const { tableInfo } = data;
     return { tableInfo };
   }
 
-  // Determina os itens com base na aba ativa
+  // Atualiza os itens da tabela conforme a aba ativa
   const updatedItems =
     activeTab === "Activated" ? ItemsForActiveTab : ItemsForArchivedTab;
 

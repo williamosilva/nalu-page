@@ -20,12 +20,42 @@ import useNavbarVisibility from "@/hooks/useNavbarVisibility";
 
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { getTableDataWithTabs, mockTableData } from "@/components/data/Data";
+import { getTableDataWithTabs } from "@/components/data/Data";
 
 const poppinsFont = Poppins({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
+
+// Itens para as abas de "Activated" e "Archived"
+const ItemsForActiveTab = [
+  {
+    id: 2,
+    code: "PRD002",
+    name: "LG 27' Monitor",
+    price: 2199.99,
+    stock: 23,
+  },
+];
+
+const ItemsForArchivedTab = [
+  {
+    id: 13,
+    code: "PRD001",
+    name: "XPS 13 Laptop",
+    price: 8999.99,
+    stock: 15,
+    variations: [
+      {
+        id: 101,
+        code: "PRD001-S",
+        name: "XPS 13 - SSD 512GB",
+        price: 9499.99,
+        stock: 8,
+      },
+    ],
+  },
+];
 
 export default function Main() {
   // const [isNavbarHidden, setIsNavbarHidden] = useState(false);
@@ -36,8 +66,55 @@ export default function Main() {
   const [isPlusButton, setIsPlusButton] = useState(false);
   const [isHeaderButton, setIsHeaderButton] = useState(false);
   const [isTabButton, setIsTabButton] = useState(true);
-  const [activeTab, setActiveTab] = useState(mockTableData.tabs[0].title);
-  const data = getTableDataWithTabs(mockTableData, isTabButton, activeTab);
+  const [tabs, setTabs] = useState([
+    { title: "Activated", quantity: 2, checked: true, special: true },
+    { title: "Archived", quantity: 1, checked: true, special: false },
+  ]);
+  const [activeTab, setActiveTab] = useState(tabs[0]?.title || "");
+
+  const handleEditTab = (updatedTabs) => {
+    const updatedTabsWithActive = updatedTabs.map((tab) => {
+      if (!tab.checked && tab.title === activeTab) {
+        const nextActiveTab = updatedTabs.find(
+          (t) => t.checked && t.title !== tab.title
+        );
+        if (nextActiveTab) {
+          setActiveTab(nextActiveTab.title);
+        }
+      }
+      return tab;
+    });
+
+    setTabs(updatedTabsWithActive);
+  };
+
+  const data = getTableDataWithTabs(
+    {
+      tabs,
+      tableInfo: {
+        columns: [
+          { header: "Code", ref: "code", alignment: "center", ordering: true },
+          { header: "Product", ref: "name", alignment: "left", ordering: true },
+          {
+            header: "Price",
+            ref: "price",
+            alignment: "center",
+            ordering: true,
+          },
+          {
+            header: "Stock",
+            ref: "stock",
+            alignment: "center",
+            ordering: true,
+          },
+        ],
+        items:
+          activeTab === "Activated" ? ItemsForActiveTab : ItemsForArchivedTab,
+      },
+    },
+    isTabButton,
+    activeTab
+  );
 
   const handleToggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "pt-br" : "en"));
@@ -94,6 +171,8 @@ export default function Main() {
                   activeTab={activeTab}
                   header={isHeaderButton}
                   data={data}
+                  onTabChange={(tab) => setActiveTab(tab)}
+                  onTabsSave={(tabs) => handleEditTab(tabs)}
                 />
               </span>
             </div>

@@ -17,6 +17,15 @@ interface ExampleProps {
   language: string;
   activeTab: string;
   data: any;
+  onTabChange: (tab: string) => void;
+  onTabsSave: (
+    tabs: {
+      title: string;
+      quantity: number;
+      checked: boolean;
+      special: boolean;
+    }[]
+  ) => void;
 }
 
 export default function Example({
@@ -29,6 +38,8 @@ export default function Example({
   language,
   data,
   activeTab,
+  onTabChange,
+  onTabsSave,
 }: ExampleProps) {
   const { backgroundGradient } = colorTheme[variant];
   const [counter, setCounter] = useState(0);
@@ -71,8 +82,6 @@ export default function Example({
           background: `${backgroundGradient.firstColor[theme]}`,
         }}
       >
-        {" "}
-        <button onClick={() => saveTabs(tabs)}>oiii</button>
         <Topbar variant={variant} theme={theme} />
         <div className="px-8 pt-4 pb-6 h-[1000px] flex flex-col overflow-y-auto">
           <div className="h-auto mt-11 ">
@@ -89,8 +98,15 @@ export default function Example({
               hasTabs={true}
               activeTab={activeTab}
               loading={false}
-              handleSaveTabs={(tabs) => saveTabs(tabs)}
-              handleTabChange={(tab) => console.log(tab)}
+              handleSaveTabs={(tabs) => {
+                console.log("bateu aqui", tabs);
+
+                onTabsSave(tabs);
+              }}
+              handleTabChange={(tab) => {
+                console.log("Tab selecionado:", tab);
+                onTabChange(tab); // Atualiza o estado no componente pai
+              }}
               plusButton={() => handleShowToastPlus()}
               addItemFunction={(id) => handleShowToast(id, "add")}
               editItemFunction={(id) => handleShowToast(id, "edit")}
