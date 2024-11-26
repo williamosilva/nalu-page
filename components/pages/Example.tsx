@@ -16,7 +16,9 @@ interface ExampleProps {
   plusButton?: React.ReactNode;
   language: string;
   activeTab: string;
+  checkboxButtons?: boolean;
   data: any;
+  loading: boolean;
   onTabChange: (tab: string) => void;
   onTabsSave: (
     tabs: {
@@ -40,10 +42,24 @@ export default function Example({
   activeTab,
   onTabChange,
   onTabsSave,
+  checkboxButtons,
+  loading,
 }: ExampleProps) {
   const { backgroundGradient } = colorTheme[variant];
   const [counter, setCounter] = useState(0);
   const [toastMessage, setToastMessage] = useState<string>("");
+
+  const handleShowToastForIDs = (ids: string[]) => {
+    setCounter((prev) => prev + 1);
+
+    if (ids.length === 1) {
+      setToastMessage(`A selected item. ID: ${ids[0]}`);
+    } else if (ids.length > 1) {
+      setToastMessage(`Selected IDs: ${ids.join(", ")}`);
+    } else {
+      setToastMessage("No ID selected.");
+    }
+  };
 
   const handleShowToast = (id: string, actionType: string) => {
     setCounter((prev) => prev + 1);
@@ -94,15 +110,15 @@ export default function Example({
               header={header}
               hasTabs={true}
               activeTab={activeTab}
-              loading={false}
+              loading={loading}
+              handleSelectionChange={
+                checkboxButtons ? (ids) => handleShowToastForIDs(ids) : null
+              }
               handleSaveTabs={(tabs) => {
-                console.log("bateu aqui", tabs);
-
                 onTabsSave(tabs);
               }}
               handleTabChange={(tab) => {
-                console.log("Tab selecionado:", tab);
-                onTabChange(tab); // Atualiza o estado no componente pai
+                onTabChange(tab);
               }}
               plusButton={plusButton ? () => handleShowToastPlus() : null}
               addItemFunction={(id) => handleShowToast(id, "add")}

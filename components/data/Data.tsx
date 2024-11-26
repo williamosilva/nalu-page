@@ -209,7 +209,7 @@ export const getTableDataWithTabs = (
       },
     };
   }
-  if (!showTabs) {
+  if (showTabs) {
     const { tableInfo } = data;
     return { tableInfo };
   }

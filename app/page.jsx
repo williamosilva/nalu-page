@@ -27,20 +27,9 @@ const poppinsFont = Poppins({
   subsets: ["latin"],
 });
 
-// Itens para as abas de "Activated" e "Archived"
 const ItemsForActiveTab = [
   {
-    id: 2,
-    code: "PRD002",
-    name: "LG 27' Monitor",
-    price: 2199.99,
-    stock: 23,
-  },
-];
-
-const ItemsForArchivedTab = [
-  {
-    id: 13,
+    id: 1,
     code: "PRD001",
     name: "XPS 13 Laptop",
     price: 8999.99,
@@ -53,7 +42,202 @@ const ItemsForArchivedTab = [
         price: 9499.99,
         stock: 8,
       },
+      {
+        id: 102,
+        code: "PRD001-M",
+        name: "XPS 13 - SSD 1TB",
+        price: 10499.99,
+        stock: 7,
+      },
     ],
+  },
+  {
+    id: 2,
+    code: "PRD002",
+    name: "LG 27' Monitor",
+    price: 2199.99,
+    stock: 23,
+  },
+  {
+    id: 3,
+    code: "PRD003",
+    name: "Logitech Mechanical Keyboard",
+    price: 899.99,
+    stock: 45,
+    variations: [
+      {
+        id: 301,
+        code: "PRD003-BR",
+        name: "ABNT2 Layout",
+        price: 899.99,
+        stock: 30,
+      },
+      {
+        id: 302,
+        code: "PRD003-US",
+        name: "US Layout",
+        price: 879.99,
+        stock: 15,
+      },
+    ],
+  },
+  {
+    id: 4,
+    code: "PRD004",
+    name: "Microsoft Wireless Mouse",
+    price: 299.99,
+    stock: 0,
+  },
+  {
+    id: 5,
+    code: "PRD005",
+    name: "iPad Pro 12.9",
+    price: 9899.99,
+    stock: 8,
+    variations: [
+      {
+        id: 501,
+        code: "PRD005-64",
+        name: "64GB - WiFi",
+        price: 9899.99,
+        stock: 3,
+      },
+      {
+        id: 502,
+        code: "PRD005-256",
+        name: "256GB - WiFi + 5G",
+        price: 11899.99,
+        stock: 5,
+      },
+    ],
+  },
+  {
+    id: 6,
+    code: "PRD006",
+    name: "Logitech C920 Webcam",
+    price: 599.99,
+    stock: 5,
+  },
+  {
+    id: 7,
+    code: "PRD007",
+    name: "Sony WH-1000XM4 Headphones",
+    price: 2499.99,
+    stock: 12,
+  },
+  {
+    id: 8,
+    code: "PRD008",
+    name: "MacBook Pro M2",
+    price: 14999.99,
+    stock: 0,
+  },
+];
+
+const ItemsForArchivedTab = [
+  {
+    id: 1,
+    code: "PRD001",
+    name: "XPS 13 Laptop",
+    price: 8999.99,
+    stock: 15,
+    variations: [
+      {
+        id: 101,
+        code: "PRD001-S",
+        name: "XPS 13 - SSD 512GB",
+        price: 9499.99,
+        stock: 8,
+      },
+      {
+        id: 102,
+        code: "PRD001-M",
+        name: "XPS 13 - SSD 1TB",
+        price: 10499.99,
+        stock: 7,
+      },
+    ],
+  },
+  {
+    id: 2,
+    code: "PRD002",
+    name: "LG 27' Monitor",
+    price: 2199.99,
+    stock: 23,
+  },
+  {
+    id: 3,
+    code: "PRD003",
+    name: "Logitech Mechanical Keyboard",
+    price: 899.99,
+    stock: 45,
+    variations: [
+      {
+        id: 301,
+        code: "PRD003-BR",
+        name: "ABNT2 Layout",
+        price: 899.99,
+        stock: 30,
+      },
+      {
+        id: 302,
+        code: "PRD003-US",
+        name: "US Layout",
+        price: 879.99,
+        stock: 15,
+      },
+    ],
+  },
+  {
+    id: 4,
+    code: "PRD004",
+    name: "Microsoft Wireless Mouse",
+    price: 299.99,
+    stock: 0,
+  },
+  {
+    id: 5,
+    code: "PRD005",
+    name: "iPad Pro 12.9",
+    price: 9899.99,
+    stock: 8,
+    variations: [
+      {
+        id: 501,
+        code: "PRD005-64",
+        name: "64GB - WiFi",
+        price: 9899.99,
+        stock: 3,
+      },
+      {
+        id: 502,
+        code: "PRD005-256",
+        name: "256GB - WiFi + 5G",
+        price: 11899.99,
+        stock: 5,
+      },
+    ],
+  },
+  {
+    id: 6,
+    code: "PRD006",
+    name: "Logitech C920 Webcam",
+    price: 599.99,
+    stock: 5,
+  },
+  {
+    id: 7,
+    code: "PRD007",
+    name: "Sony WH-1000XM4 Headphones",
+    price: 2499.99,
+    stock: 12,
+  },
+  {
+    id: 8,
+    code: "PRD008",
+    name: "MacBook Pro M2",
+    price: 14999.99,
+    stock: 0,
   },
 ];
 
@@ -67,6 +251,8 @@ export default function Main() {
   const [isHeaderButton, setIsHeaderButton] = useState(true);
   const [isTabButton, setIsTabButton] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isCheckbox, setIsCheckbox] = useState(false);
 
   const [tabs, setTabs] = useState([
     { title: "Activated", quantity: 6, checked: true, special: true },
@@ -123,6 +309,10 @@ export default function Main() {
     setLanguage((prev) => (prev === "en" ? "pt-br" : "en"));
   };
 
+  const handleShowCheckboxs = () => {
+    setIsCheckbox((prev) => !prev);
+  };
+
   function toggleTheme() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
@@ -176,6 +366,8 @@ export default function Main() {
                   data={data}
                   onTabChange={(tab) => setActiveTab(tab)}
                   onTabsSave={(tabs) => handleEditTab(tabs)}
+                  checkboxButtons={isCheckbox}
+                  loading={isLoading}
                 />
               </span>
             </div>
@@ -275,6 +467,12 @@ export default function Main() {
         }}
         languageButton={() => {
           handleToggleLanguage();
+        }}
+        checkboxButtons={() => {
+          handleShowCheckboxs();
+        }}
+        loading={() => {
+          setIsLoading((prev) => !prev);
         }}
         theme={theme}
         variant={style}

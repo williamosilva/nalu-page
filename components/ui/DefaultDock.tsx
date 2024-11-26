@@ -4,9 +4,11 @@ import { Sun } from "lucide-react";
 import { Brush } from "lucide-react";
 import { SquarePlus } from "lucide-react";
 import { Languages } from "lucide-react";
+import { Hourglass } from "lucide-react";
 import { ListStart } from "lucide-react";
 import { Circle } from "lucide-react";
 import { TableCellsMerge } from "lucide-react";
+import { SquareCheck } from "lucide-react";
 import { IconButton, Tooltip } from "@mui/material";
 import colorTheme from "@/components/constants/colorTheme";
 import { useState } from "react";
@@ -20,6 +22,8 @@ export default function DefaultDock({
   plusButton,
   languageButton,
   visibilityButton,
+  checkboxButtons,
+  loading,
   variant = "sapphire",
   theme = "light",
 }) {
@@ -28,8 +32,10 @@ export default function DefaultDock({
   const [isToggleLanguage, setIsToggleLanguage] = useState("en");
   const [isToggleAddButton, setIsToggleAddButton] = useState(true);
   const [isToggleHeader, setIsToggleHeader] = useState(true);
-  const [isToggleTab, setIsToggleTab] = useState(true);
+  const [isToggleTab, setIsToggleTab] = useState(false);
   const [isToggleVisibility, setIsToggleVisibility] = useState(true);
+  const [isCheckboxButtons, setIsCheckboxButtons] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const { dockIconColor, dockBackgroundColor } = colorTheme[variant];
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
@@ -38,6 +44,8 @@ export default function DefaultDock({
   const [isHovered5, setIsHovered5] = useState(false);
   const [isHovered6, setIsHovered6] = useState(false);
   const [isHovered7, setIsHovered7] = useState(false);
+  const [isHovered8, setIsHovered8] = useState(false);
+  const [isHovered9, setIsHovered9] = useState(false);
 
   function toggleAddButton() {
     setIsToggleAddButton(!isToggleAddButton);
@@ -74,6 +82,20 @@ export default function DefaultDock({
     visibilityButton();
   }
 
+  function toggleCheckboxButtons() {
+    setIsCheckboxButtons(!isCheckboxButtons);
+    checkboxButtons();
+  }
+
+  function handleLoading() {
+    setIsLoading(true);
+    loading();
+    setTimeout(() => {
+      setIsLoading(false);
+      loading();
+    }, 2000);
+  }
+
   return (
     <div
       className={`fixed ${
@@ -84,7 +106,9 @@ export default function DefaultDock({
         direction="bottom"
         magnification={60}
         distance={100}
-        className="gap-4"
+        className={` gap-4  transition-all duration-500 ease-in-out
+          ${isLoading ? "opacity-30 pointer-events-none" : "opacity-100"}
+        `}
       >
         <DockIcon>
           <Tooltip
@@ -245,6 +269,47 @@ export default function DefaultDock({
               onClick={toggleVisibility}
             >
               <Circle size={18} />
+            </IconButton>
+          </Tooltip>
+        </DockIcon>
+        <DockIcon>
+          <Tooltip
+            title={`${
+              isCheckboxButtons === false ? "Remove" : "Add"
+            } checkbox buttons `}
+            placement="top"
+          >
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered8(true)}
+              onMouseLeave={() => setIsHovered8(false)}
+              style={{
+                background: isHovered8
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+              onClick={toggleCheckboxButtons}
+            >
+              <SquareCheck size={18} />
+            </IconButton>
+          </Tooltip>
+        </DockIcon>
+        <DockIcon>
+          <Tooltip title={`Toggle loading`} placement="top">
+            <IconButton
+              size="large"
+              onMouseEnter={() => setIsHovered9(true)}
+              onMouseLeave={() => setIsHovered9(false)}
+              style={{
+                background: isHovered9
+                  ? dockBackgroundColor[theme]
+                  : "transparent",
+                color: dockIconColor[theme],
+              }}
+              onClick={handleLoading}
+            >
+              <Hourglass size={18} />
             </IconButton>
           </Tooltip>
         </DockIcon>
