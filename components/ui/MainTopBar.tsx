@@ -12,7 +12,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [stars, setStars] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [, setError] = useState(null);
+  const [, setError] = useState<string | null>(null);
 
   const links = [
     { id: "docs", label: "Docs" },
@@ -40,15 +40,17 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
         setStars(data.stargazers_count); // Número de estrelas
         setLoading(false);
       } catch (err) {
-        // tslint:disable-next-line: no-console
-        setError(err.message);
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Erro desconhecido."); // Agora isso não causará erro
+        }
         setLoading(false);
       }
     };
 
     fetchStars();
-  });
-
+  }, []);
   // useEffect(() => {
   //   let prevScrollPos = window.pageYOffset;
 
