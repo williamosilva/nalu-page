@@ -209,7 +209,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
             </a>
           </nav>
 
-          <div className="space-y-6 w-1/2 mx-auto">
+          <div className="space-y-6 w-[82%] mx-auto">
             <a
               href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
               target="_blank"
@@ -218,7 +218,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
               className="flex items-center justify-center text-white gap-3 px-4 py-3 rounded-xl bg-[#010409] w-full"
             >
               <GitHubIcon className="text-lg" />
-              <span className="text-[14px] font-medium">Star on GitHub</span>
+              <span className="text-[14px] font-medium">Stars on GitHub</span>
               <div className="flex items-center">
                 <StarRoundedIcon className="text-lg text-[#fcc032]" />
                 {!loading && (
