@@ -15,10 +15,10 @@ import SparklesText from "@/components/ui/sparkles-text";
 import GetStartFooter from "@/components/pages/GetStartFooter";
 import { Poppins } from "@next/font/google";
 import DefaultDock from "@/components/ui/DefaultDock";
-import useNavbarVisibility from "@/hooks/useNavbarVisibility";
+// import useNavbarVisibility from "@/hooks/useNavbarVisibility";
 
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getTableDataWithTabs } from "@/components/data/Data";
 
 const poppinsFont = Poppins({
@@ -241,8 +241,7 @@ const ItemsForArchivedTab = [
 ];
 
 export default function Main() {
-  // const [isNavbarHidden, setIsNavbarHidden] = useState(false);
-  const isNavbarHidden = useNavbarVisibility(1900, 2800);
+  const [isNavbarHidden, setIsNavbarHidden] = useState(false);
   const [theme, setTheme] = useState("light");
   const [style, setStyle] = useState("sapphire");
   const [language, setLanguage] = useState("en");
@@ -252,6 +251,40 @@ export default function Main() {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isCheckbox, setIsCheckbox] = useState(false);
+
+  //prettier-ignore
+
+  const exampleRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Verificar se a ref do Example existe
+      if (!exampleRef.current) return;
+
+      // Obter as dimensões do elemento
+      const rect = exampleRef.current.getBoundingClientRect();
+
+      // Configurar condições de visibilidade
+      // Ajuste os valores conforme necessário
+      const isVisible =
+        rect.top <= window.innerHeight * 0.5 && // Metade do elemento visível
+        rect.bottom >= window.innerHeight * 0.2; // Parte inferior não muito baixa
+
+      // Atualizar estado de visibilidade do DefaultDock
+      setIsNavbarHidden(isVisible);
+    };
+
+    // Adicionar event listener de scroll
+    window.addEventListener("scroll", handleScroll);
+
+    // Chamar uma vez para definir estado inicial
+    handleScroll();
+
+    // Remover event listener quando o componente desmontar
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Array de dependências vazio
 
   const [tabs, setTabs] = useState([
     { title: "Activated", quantity: 6, checked: true, special: true },
@@ -353,7 +386,7 @@ export default function Main() {
                 colors={{ first: "#c580ff", second: "#8c00ff" }}
                 sparklesCount={5}
               />
-              <span id="example">
+              <span id="example" ref={exampleRef}>
                 <Example
                   variant={style}
                   theme={theme}

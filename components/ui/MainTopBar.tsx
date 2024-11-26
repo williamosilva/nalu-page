@@ -174,65 +174,70 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
       </div>
 
       {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[99] bg-white pt-20">
-          <div className="container mx-auto px-4 py-6 space-y-8">
-            <nav className="flex flex-col space-y-6">
-              {links.map((link) => (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`} // Fallback para navegadores sem JS
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onLinkClick(link.id);
-                    handleLinkClick();
-                  }}
-                  className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold text-lg"
-                >
-                  {link.label}
-                </a>
-              ))}
 
+      <div
+        className={`lg:hidden ${
+          isMobileMenuOpen
+            ? "h-screen pt-20 opacity-100 "
+            : "h-0 pt-0 opacity-0"
+        }  fixed  w-full z-[99] bg-white  overflow-hidden transition-all duration-500 ease-in-out`}
+      >
+        <div className="container mx-auto px-4 py-6 space-y-8 h-full flex flex-col gap-8 itesm-center ">
+          <nav className="flex flex-col space-y-8 items-center mt-10">
+            {links.map((link) => (
               <a
-                href="https://williamoliveirasilva.online/"
-                target="_blank"
-                onClick={handleLinkClick}
+                key={link.id}
+                href={`#${link.id}`} // Fallback para navegadores sem JS
+                onClick={(e) => {
+                  e.preventDefault();
+                  onLinkClick(link.id);
+                  handleLinkClick();
+                }}
                 className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold text-lg"
               >
-                Contact
+                {link.label}
               </a>
-            </nav>
+            ))}
 
-            <div className="space-y-6">
-              <a
-                href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleLinkClick}
-                className="flex items-center justify-center text-white gap-3 px-4 py-3 rounded-xl bg-[#010409] w-full"
-              >
-                <GitHubIcon className="text-lg" />
-                <span className="text-[14px] font-medium">Star on GitHub</span>
-                <div className="flex items-center">
-                  <StarRoundedIcon className="text-lg text-[#fcc032]" />
-                  {!loading && (
-                    <NumberTicker
-                      value={stars}
-                      className="text-white -tracking-wider font-medium"
-                    />
-                  )}
-                </div>
-              </a>
+            <a
+              href="https://williamoliveirasilva.online/"
+              target="_blank"
+              onClick={handleLinkClick}
+              className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold text-lg"
+            >
+              Contact
+            </a>
+          </nav>
 
-              <div className="w-full" onClick={handleLinkClick}>
-                <ShimmerButton className="w-full">
-                  <p className="text-sm font-medium">Get Started</p>
-                </ShimmerButton>
+          <div className="space-y-6 w-1/2 mx-auto">
+            <a
+              href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleLinkClick}
+              className="flex items-center justify-center text-white gap-3 px-4 py-3 rounded-xl bg-[#010409] w-full"
+            >
+              <GitHubIcon className="text-lg" />
+              <span className="text-[14px] font-medium">Star on GitHub</span>
+              <div className="flex items-center">
+                <StarRoundedIcon className="text-lg text-[#fcc032]" />
+                {!loading && (
+                  <NumberTicker
+                    value={stars}
+                    className="text-white -tracking-wider font-medium"
+                  />
+                )}
               </div>
+            </a>
+
+            <div className="w-full" onClick={handleLinkClick}>
+              <ShimmerButton className="w-full">
+                <p className="text-sm font-medium">Get Started</p>
+              </ShimmerButton>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
