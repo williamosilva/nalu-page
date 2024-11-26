@@ -28,7 +28,6 @@ export function GridPattern({
   className,
   maxOpacity = 0.5,
   duration = 4,
-
   ...props
 }: GridPatternProps) {
   const id = useId();
@@ -43,7 +42,6 @@ export function GridPattern({
     ];
   }
 
-  // Adjust the generateSquares function to return objects with an id, x, and y
   function generateSquares(count: number) {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
@@ -51,7 +49,6 @@ export function GridPattern({
     }));
   }
 
-  // Function to update a single square's position
   const updateSquarePosition = (id: number) => {
     setSquares((currentSquares) =>
       currentSquares.map((sq) =>
@@ -65,14 +62,12 @@ export function GridPattern({
     );
   };
 
-  // Update squares to animate in
   useEffect(() => {
     if (dimensions.width && dimensions.height) {
       setSquares(generateSquares(numSquares));
     }
   }, [dimensions, numSquares]);
 
-  // Resize observer to update container dimensions
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
@@ -83,16 +78,17 @@ export function GridPattern({
       }
     });
 
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
+    const currentRef = containerRef.current;
+    if (currentRef) {
+      resizeObserver.observe(currentRef);
     }
 
     return () => {
-      if (containerRef.current) {
-        resizeObserver.unobserve(containerRef.current);
+      if (currentRef) {
+        resizeObserver.unobserve(currentRef);
       }
     };
-  }, [containerRef]);
+  }, []);
 
   return (
     <svg
