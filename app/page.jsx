@@ -352,8 +352,8 @@ export default function Main() {
 
   return (
     <>
-      <div className="relative z-[2]">
-        <div className="relative w-full">
+      <div className="relative ">
+        <div className="relative w-full z-[2]">
           <MainTopBar
             showDesktopNav={isNavbarHidden}
             onLinkClick={handleScrollToSection}
@@ -457,14 +457,14 @@ export default function Main() {
           </div>
           <GetStartFooter />
           <Footer onLinkClick={handleScrollToSection} />
-          <GridPattern
-            maxOpacity={0.4}
-            numSquares={5}
-            height={80}
-            width={80}
-            className="fixed opacity-15 z-[1]"
-          />
         </div>
+        <GridPattern
+          maxOpacity={0.4}
+          numSquares={5}
+          height={80}
+          width={80}
+          className="fixed opacity-15 z-[1]"
+        />
       </div>
 
       <DefaultDock
