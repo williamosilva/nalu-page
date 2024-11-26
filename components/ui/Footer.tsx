@@ -105,7 +105,7 @@ export default function Footer({ onLinkClick }) {
           </a>
         </div>
       </div>
-      <div className="border-t w-full flex pt-2 pb-4 justify-center items-center text-sm text-[#aaa] gap-32">
+      <div className="border-t w-full flex m pt-8 md:pt-2 pb-4 justify-center items-center text-sm text-[#aaa] gap-8  md:gap-32 md:flex-row flex-col">
         <span className="">
           Brought to you by{" "}
           <a
