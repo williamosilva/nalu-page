@@ -278,7 +278,7 @@ export default function Main() {
 
   const data = getTableDataWithTabs(
     {
-      tabs,
+      tabs: isVisible && isTabButton ? [] : tabs,
       tableInfo: {
         columns: [
           { header: "Code", ref: "code", alignment: "center", ordering: true },

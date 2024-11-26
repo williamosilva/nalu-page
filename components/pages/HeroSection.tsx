@@ -50,40 +50,39 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="relative ">
-      <div className=" h-[1080px] flex flex-col w-full justify-center items-center z-[10] relative md:px-0 px-6">
+    <div className="relative">
+      <div className="min-h-[870px] flex flex-col w-full justify-center items-center z-[10] relative md:px-0 px-6">
         {isDesktopOrLaptop ? (
           <>
             <GradualSpacing
-              text={`Manage and manipulate`}
-              className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-24 font-black 2xl:h-28 text-4xl h-14  md:text-6xl md:h-20 sm:text-5xl sm:h-16  text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+              text="Manage and manipulate"
+              className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-24 font-black 2xl:h-28 text-4xl h-14 md:text-6xl md:h-20 sm:text-5xl sm:h-16 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c] text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
             />
             <GradualSpacing
               text="your items easily"
-              className="2xl:text-8xl xl:text-8xl lg:text-7xl  xl:h-28  lg:h-20 2xl:h-28  text-4xl h-14   md:text-6xl md:h-20 sm:text-5xl sm:h-16  font-extrabold mb-4 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]   text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+              className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-20 2xl:h-28 text-4xl h-14 md:text-6xl md:h-20 sm:text-5xl sm:h-16 font-extrabold mb-4 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c] text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
             />
           </>
         ) : (
           <>
             <GradualSpacing
               text="Manage and"
-              className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-24 font-black 2xl:h-28 text-[42px] h-14  md:text-6xl md:h-20 sm:text-6xl sm:h-20    text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+              className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-24 font-black 2xl:h-28 text-[42px] h-14 md:text-6xl md:h-20 sm:text-6xl sm:h-20 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c] text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
             />
             <GradualSpacing
-              text=" manipulate"
-              className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-24 font-black 2xl:h-28 text-[42px] h-14  md:text-6xl md:h-20 sm:text-6xl sm:h-20   text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]  text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+              text="manipulate"
+              className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-24 font-black 2xl:h-28 text-[42px] h-14 md:text-6xl md:h-20 sm:text-6xl sm:h-20 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c] text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
             />
             <GradualSpacing
               text="your items easily"
-              className="2xl:text-8xl xl:text-8xl lg:text-7xl  xl:h-28  lg:h-20 2xl:h-28  text-[42px] h-14   md:text-6xl md:h-20 sm:text-6xl sm:h-20  font-extrabold mb-4 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c]   text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
+              className="2xl:text-8xl xl:text-8xl lg:text-7xl xl:h-28 lg:h-20 2xl:h-28 text-[42px] h-14 md:text-6xl md:h-20 sm:text-6xl sm:h-20 font-extrabold mb-4 text-wrap bg-gradient-to-b from-[#26043b] to-[#441c5c] text-transparent bg-clip-text animate-[gradient_3s_ease-in-out_infinite] bg-[length:200%_auto] bg-[position:0%_center]"
             />
           </>
         )}
 
         <FadeText
-          className="lg:text-xl  text-lg  text-[#6b7280] !text-center sm:text-base md:w-[680px]  lg:w-full block"
-          text="A modern, customizable React table with theming, pagination, and
-        advanced features for an intuitive table."
+          className="lg:text-xl text-lg text-[#6b7280] !text-center sm:text-base md:w-[680px] lg:w-full block"
+          text="A modern, customizable React table with theming, pagination, and advanced features for an intuitive table."
         />
         <motion.div
           className="pt-14 flex gap-20"
@@ -105,7 +104,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={buttonControls}
         >
-          <div className="pt-10 ">
+          <div className="pt-10">
             <NpmStart />
           </div>
         </motion.div>

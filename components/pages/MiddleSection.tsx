@@ -74,7 +74,7 @@ const features = [
     href: "/",
     cta: "Learn more",
     background: (
-      <div className="absolute w-[374px] h-48 left-[50%] top-[0%] -translate-x-[50%] -translate-y-[50%] group">
+      <div className="absolute w-[484px] h-48 left-[50%] top-[30%] -translate-x-[50%] -translate-y-[50%] group">
         <RetroGrid className="" angle={70} />
       </div>
     ),
@@ -110,7 +110,7 @@ const features = [
 
 export function MiddleSection() {
   return (
-    <BentoGrid className="lg:grid-rows-3 max-w-[1500px] mx-auto">
+    <BentoGrid className="lg:grid-rows-3  xl:max-w-[90%] max-w-[99%]  mx-auto">
       {features.map((feature) => (
         // @ts-expect-error: Feature type may not match BentoCard props
         <BentoCard key={feature.name} {...feature} />
