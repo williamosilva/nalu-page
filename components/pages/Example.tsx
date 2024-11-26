@@ -82,7 +82,7 @@ export default function Example({
   const [counter, setCounter] = useState(0);
   const [toastMessage, setToastMessage] = useState<string>("");
 
-  console.log("objeto data", data);
+  // console.log("objeto data", data);
 
   const handleShowToastForIDs = (ids: string[]) => {
     setCounter((prev) => prev + 1);

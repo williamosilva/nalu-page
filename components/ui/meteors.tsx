@@ -30,10 +30,6 @@ export const Meteors = ({ number = 20 }: MeteorsProps) => {
     }
   }, [number]);
 
-  useEffect(() => {
-    console.log("Meteor styles:", meteorStyles);
-  }, [meteorStyles]);
-
   return (
     <>
       {meteorStyles.map((style, idx) => (

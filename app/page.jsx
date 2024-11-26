@@ -252,39 +252,29 @@ export default function Main() {
   const [isLoading, setIsLoading] = useState(false);
   const [isCheckbox, setIsCheckbox] = useState(false);
 
-  //prettier-ignore
-
   const exampleRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Verificar se a ref do Example existe
       if (!exampleRef.current) return;
 
-      // Obter as dimensões do elemento
       const rect = exampleRef.current.getBoundingClientRect();
 
-      // Configurar condições de visibilidade
-      // Ajuste os valores conforme necessário
       const isVisible =
         rect.top <= window.innerHeight * 0.5 && // Metade do elemento visível
         rect.bottom >= window.innerHeight * 0.2; // Parte inferior não muito baixa
 
-      // Atualizar estado de visibilidade do DefaultDock
       setIsNavbarHidden(isVisible);
     };
 
-    // Adicionar event listener de scroll
     window.addEventListener("scroll", handleScroll);
 
-    // Chamar uma vez para definir estado inicial
     handleScroll();
 
-    // Remover event listener quando o componente desmontar
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); // Array de dependências vazio
+  }, []);
 
   const [tabs, setTabs] = useState([
     { title: "Activated", quantity: 6, checked: true, special: true },
@@ -362,118 +352,119 @@ export default function Main() {
 
   return (
     <>
-      <div className="relative w-full">
-        <MainTopBar
-          showDesktopNav={isNavbarHidden}
-          onLinkClick={handleScrollToSection}
-        />
-        <div className="relative container  mx-auto   mb-20 flex flex-col justify-center items-center ">
-          <div className="flex flex-col w-full relative z-[2] items-center justify-center">
-            {/* Esconde a navbar quando isNavbarHidden for true */}
-            <div className="min-h-auto w-full">
-              <HeroSection variant="sapphire" theme="light" />
-            </div>
-            <div className="min-h-auto w-full mb-56 md:px-0 px-6 ">
-              <MiddleSection variant="sapphire" theme="light" />
-            </div>
-            <div className="min-h-auto md:px-8 px-6 flex flex-col gap-28 w-full">
-              <SparklesText
-                className={cn(
-                  "text-5xl font-bold text-center mt-16 text-[#320E48]",
-                  poppinsFont.className
-                )}
-                text="Usage Example"
-                colors={{ first: "#c580ff", second: "#8c00ff" }}
-                sparklesCount={5}
-              />
-              <span id="example" ref={exampleRef}>
-                <Example
-                  variant={style}
-                  theme={theme}
-                  language={language}
-                  tabButton={isTabButton}
-                  plusButton={isPlusButton}
-                  activeTab={activeTab}
-                  header={isHeaderButton}
-                  data={data}
-                  onTabChange={(tab) => setActiveTab(tab)}
-                  onTabsSave={(tabs) => handleEditTab(tabs)}
-                  checkboxButtons={isCheckbox}
-                  loading={isLoading}
+      <div className="relative z-[2]">
+        <div className="relative w-full">
+          <MainTopBar
+            showDesktopNav={isNavbarHidden}
+            onLinkClick={handleScrollToSection}
+          />
+          <div className="relative container  mx-auto   mb-20 flex flex-col justify-center items-center ">
+            <div className="flex flex-col w-full relative z-[2] items-center justify-center">
+              {/* Esconde a navbar quando isNavbarHidden for true */}
+              <div className="min-h-auto w-full">
+                <HeroSection variant="sapphire" theme="light" />
+              </div>
+              <div className="min-h-auto w-full mb-56 md:px-0 px-6 ">
+                <MiddleSection variant="sapphire" theme="light" />
+              </div>
+              <div className="min-h-auto md:px-8 px-6 flex flex-col gap-28 w-full">
+                <SparklesText
+                  className={cn(
+                    "text-5xl font-bold text-center mt-16 text-[#320E48]",
+                    poppinsFont.className
+                  )}
+                  text="Usage Example"
+                  colors={{ first: "#c580ff", second: "#8c00ff" }}
+                  sparklesCount={5}
                 />
-              </span>
-            </div>
-            <div
-              className="min-h-auto flex flex-col gap-6 2xl:w-[50%]  w-[80%] items-center"
-              id="docs"
-            >
-              <h1
-                className={cn(
-                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                  poppinsFont.className
-                )}
+                <span id="example" ref={exampleRef}>
+                  <Example
+                    variant={style}
+                    theme={theme}
+                    language={language}
+                    tabButton={isTabButton}
+                    plusButton={isPlusButton}
+                    activeTab={activeTab}
+                    header={isHeaderButton}
+                    data={data}
+                    onTabChange={(tab) => setActiveTab(tab)}
+                    onTabsSave={(tabs) => handleEditTab(tabs)}
+                    checkboxButtons={isCheckbox}
+                    loading={isLoading}
+                  />
+                </span>
+              </div>
+              <div
+                className="min-h-auto flex flex-col gap-6 2xl:w-[50%]  w-[80%] items-center"
+                id="docs"
               >
-                Installation
-              </h1>
-              <InstallationSection variant="sapphire" theme="light" />
-            </div>
-            <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
-              <h1
-                className={cn(
-                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                  poppinsFont.className
-                )}
-              >
-                Quick Start
-              </h1>
-              <QuickStart variant="sapphire" theme="light" />
-            </div>
-            <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
-              <h1
-                className={cn(
-                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                  poppinsFont.className
-                )}
-              >
-                Props
-              </h1>
-              <Props />
-            </div>
-            <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
-              <h1
-                className={cn(
-                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                  poppinsFont.className
-                )}
-              >
-                Event Handlers
-              </h1>
-              <EventHandlers />
-            </div>
-            <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%] ">
-              <h1
-                className={cn(
-                  "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
-                  poppinsFont.className
-                )}
-              >
-                Examples
-              </h1>
+                <h1
+                  className={cn(
+                    "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                    poppinsFont.className
+                  )}
+                >
+                  Installation
+                </h1>
+                <InstallationSection variant="sapphire" theme="light" />
+              </div>
+              <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
+                <h1
+                  className={cn(
+                    "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                    poppinsFont.className
+                  )}
+                >
+                  Quick Start
+                </h1>
+                <QuickStart variant="sapphire" theme="light" />
+              </div>
+              <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
+                <h1
+                  className={cn(
+                    "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                    poppinsFont.className
+                  )}
+                >
+                  Props
+                </h1>
+                <Props />
+              </div>
+              <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%]  items-center">
+                <h1
+                  className={cn(
+                    "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                    poppinsFont.className
+                  )}
+                >
+                  Event Handlers
+                </h1>
+                <EventHandlers />
+              </div>
+              <div className="min-h-auto flex flex-col gap-6  2xl:w-[50%]  w-[80%] ">
+                <h1
+                  className={cn(
+                    "text-3xl font-semibold w-full leading-[3rem] mt-16 border-b text-left text-[#320E48]",
+                    poppinsFont.className
+                  )}
+                >
+                  Examples
+                </h1>
 
-              <BasicExamples />
+                <BasicExamples />
+              </div>
             </div>
           </div>
-          <div className=" z-[1] opacity-20   ">
-            <GridPattern
-              maxOpacity={0.5}
-              numSquares={7}
-              height={80}
-              width={80}
-            />
-          </div>
+          <GetStartFooter />
+          <Footer onLinkClick={handleScrollToSection} />
+          <GridPattern
+            maxOpacity={0.4}
+            numSquares={5}
+            height={80}
+            width={80}
+            className="fixed opacity-15 z-[1]"
+          />
         </div>
-        <GetStartFooter />
-        <Footer onLinkClick={handleScrollToSection} />
       </div>
 
       <DefaultDock

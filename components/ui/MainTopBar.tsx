@@ -8,7 +8,7 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import { Menu, X } from "lucide-react";
 
 export default function MainTopBar({ showDesktopNav, onLinkClick }) {
-  console.log("MainTopBar -> showDesktopNav", showDesktopNav);
+  // console.log("MainTopBar -> showDesktopNav", showDesktopNav);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [stars, setStars] = useState(0);
   const [loading, setLoading] = useState(true);
