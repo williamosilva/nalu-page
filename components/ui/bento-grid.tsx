@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 const BentoGrid = ({
   children,
@@ -28,14 +26,12 @@ const BentoCard = ({
   background,
   Icon,
   description,
-  href,
-  cta,
   hoverBackground = "none", // Alterado para aceitar "none", "slide" ou "scale"
 }: {
   name: string;
   className: string;
   background: ReactNode;
-  Icon: any;
+  Icon: React.ElementType;
   description: string;
   href: string;
   cta: string;

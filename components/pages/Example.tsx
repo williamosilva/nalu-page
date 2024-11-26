@@ -7,6 +7,39 @@ import colorTheme from "@/components/constants/colorTheme";
 import Toast from "../ui/Toast";
 import { useState } from "react";
 
+interface ColumnInfo {
+  header: string;
+  ref: string;
+  alignment: "center" | "left" | "right";
+  ordering: boolean;
+}
+
+interface Variation {
+  id: number;
+  code: string;
+  name: string;
+  price: number;
+  stock: number;
+}
+
+interface Item {
+  id: number;
+  code: string;
+  name: string;
+  price: number;
+  stock: number;
+  variations?: Variation[];
+}
+
+interface TableInfo {
+  columns: ColumnInfo[];
+  items: Item[];
+}
+
+interface Data {
+  tableInfo: TableInfo;
+}
+
 interface ExampleProps {
   variant?: "sapphire" | "crimson";
   theme?: "light" | "dark";
@@ -17,7 +50,7 @@ interface ExampleProps {
   language: string;
   activeTab: string;
   checkboxButtons?: boolean;
-  data: any;
+  data: Data;
   loading: boolean;
   onTabChange: (tab: string) => void;
   onTabsSave: (
@@ -35,7 +68,7 @@ export default function Example({
   theme = "light",
   id,
   header,
-  tabButton,
+
   plusButton,
   language,
   data,
@@ -48,6 +81,8 @@ export default function Example({
   const { backgroundGradient } = colorTheme[variant];
   const [counter, setCounter] = useState(0);
   const [toastMessage, setToastMessage] = useState<string>("");
+
+  console.log("objeto data", data);
 
   const handleShowToastForIDs = (ids: string[]) => {
     setCounter((prev) => prev + 1);

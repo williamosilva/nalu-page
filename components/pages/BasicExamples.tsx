@@ -21,11 +21,11 @@ export default function BasicExamples() {
             </span>
             <span className="ml-5 -mt-1 text-[#005cc5] flex">
               tableData=
-              <p className="text-[#032f62]">"crimson"</p>
+              <p className="text-[#032f62]">&quot;crimson&quot;</p>
             </span>
             <span className="ml-5 -mt-1 text-[#005cc5] flex">
               theme=
-              <p className="text-[#032f62]">"light"</p>
+              <p className="text-[#032f62]">&quot;light&quot;</p>
             </span>
             <span className="ml-0 text-[#005cc5] flex">{"/>"}</span>
           </div>
@@ -113,7 +113,7 @@ export default function BasicExamples() {
                 {"{(selected) => console.log('Selected:', selected)}"}
               </p>
               <p className="text-black opacity-50 ml-3">
-                // returns an array of items selected in the checkbox
+                {"// returns an array of items selected in the checkbox"}
               </p>
             </span>
             <span className="ml-0 text-[#005cc5] flex">{"/>"}</span>

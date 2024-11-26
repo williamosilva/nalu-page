@@ -7,7 +7,6 @@ import { MiddleSection } from "@/components/pages/MiddleSection";
 import InstallationSection from "@/components/pages/InstallationSection";
 import QuickStart from "@/components/pages/QuickStart";
 import GridPattern from "@/components/ui/animated-grid-pattern";
-import Toast from "@/components/ui/Toast";
 import Props from "@/components/pages/Props";
 import Footer from "@/components/ui/Footer";
 import BasicExamples from "@/components/pages/BasicExamples";
@@ -19,7 +18,7 @@ import DefaultDock from "@/components/ui/DefaultDock";
 import useNavbarVisibility from "@/hooks/useNavbarVisibility";
 
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getTableDataWithTabs } from "@/components/data/Data";
 
 const poppinsFont = Poppins({

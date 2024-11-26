@@ -5,14 +5,14 @@ import colorTheme from "@/components/constants/colorTheme";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   hasNotification?: boolean;
-  theme?: string;
+  theme?: "light" | "dark";
   variant?: string;
 }
 
 const IconButton: React.FC<ButtonProps> = ({
   children,
   hasNotification,
-  theme,
+  theme = "light",
   variant,
   ...props
 }) => {
@@ -52,7 +52,6 @@ interface TopbarProps {
 const Topbar: React.FC<TopbarProps> = ({
   theme = "light",
   variant = "sapphire",
-  ...props
 }) => {
   // Garantir que o tema e a variante sejam válidos
   const currentTheme = colorTheme[variant];

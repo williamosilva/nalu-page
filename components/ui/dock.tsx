@@ -73,6 +73,7 @@ export interface DockIconProps {
   size?: number;
   magnification?: number;
   distance?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mouseX?: any;
   className?: string;
   children?: React.ReactNode;
@@ -80,6 +81,7 @@ export interface DockIconProps {
 }
 
 const DockIcon = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   size,
   magnification = DEFAULT_MAGNIFICATION,
   distance = DEFAULT_DISTANCE,

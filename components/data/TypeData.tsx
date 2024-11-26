@@ -20,7 +20,6 @@ interface Variation {
   name: string;
   price: number;
   stock: number;
-  [key: string]: any;
 }
 
 interface TableItem {
@@ -31,7 +30,6 @@ interface TableItem {
   stock: number;
 
   variations?: Variation[];
-  [key: string]: any;
 }
 
 interface TableInfo {

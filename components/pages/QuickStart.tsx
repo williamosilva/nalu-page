@@ -5,11 +5,14 @@ export default function QuickStart() {
         <span className="text-[#d53042] flex gap-1">
           import <p className="text-[#e36209]">NaluTable</p> from
         </span>
-        <p className="text-[#032f62]">"nalu-table"</p>;
+        <p className="text-[#032f62]">&quot;nalu-table&quot;</p>;
       </span>
       <span className="flex gap-1">
         <span className="text-[#d53042] flex gap-1">
-          import <p className="text-[#032f62]  ">"nalu-table/dist/style.css"</p>
+          import{" "}
+          <p className="text-[#032f62]">
+            &quot;nalu-table/dist/style.css&quot;
+          </p>
         </span>
         ;
       </span>
@@ -34,7 +37,7 @@ export default function QuickStart() {
           <span className="inline-flex flex-wrap items-center gap-1">
             {"{"}
             <span className="text-[#005cc5]">title</span>:
-            <span className="text-[#032f62]">'Tab 1'</span>,
+            <span className="text-[#032f62]">&apos;Tab&apos;</span>,
             <span className="text-[#005cc5]">quantity</span>:
             <span className="text-[#032f62]">10</span>,
             <span className="text-[#005cc5]">checked</span>:
@@ -46,7 +49,7 @@ export default function QuickStart() {
           <span className="inline-flex flex-wrap items-center gap-1">
             {"{"}
             <span className="text-[#005cc5]">title</span>:
-            <span className="text-[#032f62]">'Tab 2'</span>,
+            <span className="text-[#032f62]">&apos;Tab 2&apos;</span>,
             <span className="text-[#005cc5]">quantity</span>:
             <span className="text-[#032f62]">20</span>,
             <span className="text-[#005cc5]">checked</span>:
@@ -68,11 +71,11 @@ export default function QuickStart() {
             <span className="inline-flex flex-wrap items-center gap-1">
               {"{"}
               <span className="text-[#005cc5]">header</span>:
-              <span className="text-[#032f62]">'Name'</span>,
+              <span className="text-[#032f62]">&apos;Name&apos;</span>,
               <span className="text-[#005cc5]">ref</span>:
-              <span className="text-[#032f62]">'name'</span>,
+              <span className="text-[#032f62]">&apos;name&apos;</span>,
               <span className="text-[#005cc5]">alignment</span>:
-              <span className="text-[#032f62]">'left'</span>,
+              <span className="text-[#032f62]">&apos;left&apos;</span>,
               <span className="text-[#005cc5]">ordering</span>:
               <span className="text-[#032f62]">true</span>
               {"}"},
@@ -80,11 +83,11 @@ export default function QuickStart() {
             <span className="inline-flex flex-wrap items-center gap-1">
               {"{"}
               <span className="text-[#005cc5]">header</span>:
-              <span className="text-[#032f62]">'Price'</span>,
+              <span className="text-[#032f62]">&apos;Price&apos;</span>,
               <span className="text-[#005cc5]">ref</span>:
-              <span className="text-[#032f62]">'price'</span>,
+              <span className="text-[#032f62]">&apos;price&apos;</span>,
               <span className="text-[#005cc5]">alignment</span>:
-              <span className="text-[#032f62]">'right'</span>,
+              <span className="text-[#032f62]">&apos;right&apos;</span>,
               <span className="text-[#005cc5]">ordering</span>:
               <span className="text-[#032f62]">true</span>
               {"}"}
@@ -100,7 +103,7 @@ export default function QuickStart() {
               <span className="text-[#005cc5]">id</span>:
               <span className="text-[#032f62]">1</span>,
               <span className="text-[#005cc5]">name</span>:
-              <span className="text-[#032f62]">'Item 1'</span>,
+              <span className="text-[#032f62]">&apos;Item 1&apos;</span>,
               <span className="text-[#005cc5]">price</span>:
               <span className="text-[#032f62]">10.99</span>
               {"}"},
@@ -110,7 +113,7 @@ export default function QuickStart() {
               <span className="text-[#005cc5]">id</span>:
               <span className="text-[#032f62]">2</span>,
               <span className="text-[#005cc5]">name</span>:
-              <span className="text-[#032f62]">'Item 2'</span>,
+              <span className="text-[#032f62]">&apos;Item 2&apos;</span>,
               <span className="text-[#005cc5]">price</span>:
               <span className="text-[#032f62]">20.99</span>
               {"}"}
@@ -138,11 +141,11 @@ export default function QuickStart() {
       </span>
       <span className="ml-12 -mt-1 text-[#005cc5] flex ">
         tableData=
-        <p className="text-[#032f62]">"sapphire"</p>
+        <p className="text-[#032f62]">&quot;sapphire&quot;</p>
       </span>
       <span className="ml-12 -mt-1 text-[#005cc5] flex ">
         theme=
-        <p className="text-[#032f62]">"light"</p>
+        <p className="text-[#032f62]">&quot;light&quot;</p>
       </span>
       <span className="ml-7 text-[#005cc5] flex ">{"/>"}</span>
       <span className="ml-3 text-black flex ">{");"}</span>

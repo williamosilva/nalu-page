@@ -1,5 +1,4 @@
 import Image from "next/image";
-import NaluDark from "../../assets/NaluDark.png";
 import Linkedin from "../../assets/logotipo-do-linkedin.png";
 import Github from "../../assets/github-logo.png";
 import { Globe } from "lucide-react";
