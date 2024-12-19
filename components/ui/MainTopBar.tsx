@@ -220,7 +220,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
               <GitHubIcon className="text-lg" />
               <span className="text-[14px] font-medium">Stars on GitHub</span>
               <div className="flex items-center">
-                <StarRoundedIcon className="text-lg text-[#fcc032]" />
+                <StarRoundedIcon className="text-lg  text-[#6b7280] group-hover:text-[#fcc032] transition-all duration-500 ease-in-out" />
                 {!loading && (
                   <NumberTicker
                     value={stars}
