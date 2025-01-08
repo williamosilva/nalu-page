@@ -107,7 +107,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
                 </a>
               ))}
               <a
-                href="https://williamoliveirasilva.online/"
+                href="https://williamsilva.dev/"
                 target="_blank"
                 onClick={handleLinkClick}
                 className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold"
@@ -200,7 +200,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
             ))}
 
             <a
-              href="https://williamoliveirasilva.online/"
+              href="https://williamsilva.dev/"
               target="_blank"
               onClick={handleLinkClick}
               className="text-gray-600 hover:text-gray-900 transition-all ease-in-out font-semibold text-lg"
