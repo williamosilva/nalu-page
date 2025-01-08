@@ -31,7 +31,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
     const fetchStars = async () => {
       try {
         const response = await fetch(
-          `https://api.github.com/repos/WilliamSilvaOliveiraa/nalu-table-component`
+          `https://api.github.com/repos/williamosilva/nalu-table-component`
         );
         if (!response.ok) {
           throw new Error(`Erro ao buscar dados: ${response.statusText}`);
@@ -120,7 +120,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
 
             <div className="hidden lg:flex items-center space-x-2 relative">
               <a
-                href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
+                href="https://github.com/williamosilva/nalu-table-component"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleLinkClick}
@@ -211,7 +211,7 @@ export default function MainTopBar({ showDesktopNav, onLinkClick }) {
 
           <div className="space-y-6 w-[82%] mx-auto">
             <a
-              href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
+              href="https://github.com/williamosilva/nalu-table-component"
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleLinkClick}
