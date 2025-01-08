@@ -66,7 +66,7 @@ export default function Footer({ onLinkClick }) {
             Docs
           </a> */}
           <a
-            href="https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
+            href="https://williamsilva.dev"
             target="_blank"
             className="text-gray-600 hover:text-gray-900 text-base font-medium"
           >
