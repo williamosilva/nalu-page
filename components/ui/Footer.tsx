@@ -78,7 +78,7 @@ export default function Footer({ onLinkClick }) {
         <div className="flex gap-6 w-full  justify-center md:justify-end">
           <a
             href="
-             https://williamoliveirasilva.online/"
+             https://williamsilva.dev/"
             target="_blank"
             rel="noopener noreferrer"
             className="border opacity-70 p-[10px] transition-all duration-300 ease-in-out rounded-full text-[#b8b8b8] border-[#b8b8b8] hover:bg-[#ececec] "
@@ -87,7 +87,7 @@ export default function Footer({ onLinkClick }) {
           </a>
           <a
             href="
-             https://github.com/WilliamSilvaOliveiraa"
+             https://github.com/williamosilva"
             target="_blank"
             rel="noopener noreferrer"
             className="border opacity-70 p-[10px] transition-all duration-300 ease-in-out rounded-full text-[#b8b8b8] border-[#b8b8b8] hover:bg-[#ececec] "
