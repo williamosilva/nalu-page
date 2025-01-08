@@ -1,7 +1,6 @@
-// hooks/useNavbarVisibility.ts
+
 import { useState, useEffect } from "react";
 
-// Adicione 'export default' antes da função
 export default function useNavbarVisibility(
   hideStart: number,
   hideEnd: number
