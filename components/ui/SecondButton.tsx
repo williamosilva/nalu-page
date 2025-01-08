@@ -13,7 +13,7 @@ export default function SecondButton() {
     <button
       onClick={() =>
         openLinkInNewTab(
-          "https://github.com/WilliamSilvaOliveiraa/nalu-table-component"
+          "https://github.com/williamosilva/nalu-table-component"
         )
       }
       className="flex relative items-center group text-[#6b6a6a] hover:text-[#4e4c4e] transition-all duration-300 cursor-pointer"
